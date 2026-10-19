@@ -11,25 +11,23 @@
     <!-- Top Left Asymmetrical Gold Spider Web -->
     <div class="web-corner">
         <svg class="spider-web-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-            <g stroke="#e5c158" stroke-width="1.8" fill="none" opacity="0.9" stroke-linecap="round">
+            <g stroke="#e5c158" stroke-width="1.8" fill="none" opacity="0.8" stroke-linecap="round">
                 <line x1="0" y1="0" x2="190" y2="20" />
                 <line x1="0" y1="0" x2="160" y2="85" />
                 <line x1="0" y1="0" x2="105" y2="155" />
                 <line x1="0" y1="0" x2="40" y2="185" />
                 <line x1="0" y1="0" x2="5" y2="200" />
-
                 <path d="M 45 5 Q 40 18 40 22 Q 30 35 26 38 Q 15 45 10 46 Q 5 48 1 50" />
                 <path d="M 90 10 Q 80 35 80 42 Q 60 65 52 76 Q 25 85 20 91 Q 10 98 2 100" />
                 <path d="M 135 15 Q 120 50 120 63 Q 95 100 79 116 Q 40 135 30 138 Q 15 145 3 150" />
                 <path d="M 180 19 Q 170 65 152 81 Q 120 135 105 155 Q 50 175 38 178 Q 20 190 4 195" />
-                
                 <path d="M 120 63 Q 125 80 122 95" stroke-dasharray="2 4" opacity="0.6"/>
                 <path d="M 52 76 Q 56 90 54 105" stroke-dasharray="3 5" opacity="0.5"/>
             </g>
         </svg>
     </div>
 
-    <!-- Hanging Parallax Spider -->
+    <!-- Parallax Spider -->
     <div class="spider-rig" id="spiderRig">
         <div class="spider-thread" id="spiderThread"></div>
         <div class="spider" id="spiderBody">
@@ -37,7 +35,6 @@
                 <circle cx="12" cy="15" r="4" fill="#e5c158"/>
                 <circle cx="12" cy="8" r="3" fill="#e5c158"/>
                 <path d="M 10 17 Q 12 20 14 17" stroke="#330205" stroke-width="0.8" fill="none"/>
-                
                 <path d="M 11 8 Q 6 4 2 8 M 13 8 Q 18 4 22 8" stroke="#e5c158" stroke-width="1.5" fill="none" stroke-linecap="round"/>
                 <path d="M 10 11 Q 4 10 1 14 M 14 11 Q 20 10 23 14" stroke="#e5c158" stroke-width="1.5" fill="none" stroke-linecap="round"/>
                 <path d="M 10 13 Q 5 16 3 20 M 14 13 Q 19 16 21 20" stroke="#e5c158" stroke-width="1.5" fill="none" stroke-linecap="round"/>
@@ -46,8 +43,9 @@
         </div>
     </div>
 
-    <!-- Right-Side Fixed Metallic Chain Matrix -->
+    <!-- GPU-Accelerated Background Chain Matrix -->
     <div class="chains-container">
+        <!-- These drop out entirely on mobile for performance -->
         <div class="chain-track chain-bg chain-1"></div>
         <div class="chain-track chain-mid chain-2"></div>
         <div class="chain-track chain-bg chain-4"></div>
@@ -56,40 +54,40 @@
         <div class="chain-track chain-heavy chain-3">
             <div class="flower-loop">
                 <div class="flower f-lg f-svg-1" style="top: 200px;"></div>
-                <div class="flower f-md f-svg-2" style="top: 950px; transform: translateX(-50%) rotate(15deg);"></div>
-                <div class="flower f-sm f-svg-3" style="top: 1800px; transform: translateX(-50%) rotate(-10deg);"></div>
-                <div class="flower f-xl f-svg-1" style="top: 2500px; transform: translateX(-50%) rotate(5deg);"></div>
+                <div class="flower f-md f-svg-2" style="top: 950px; transform: translateX(-50%) rotate(15deg) translateZ(0);"></div>
+                <div class="flower f-sm f-svg-3" style="top: 1800px; transform: translateX(-50%) rotate(-10deg) translateZ(0);"></div>
+                <div class="flower f-xl f-svg-1" style="top: 2500px; transform: translateX(-50%) rotate(5deg) translateZ(0);"></div>
                 
                 <div class="flower f-lg f-svg-1" style="top: -2680px;"></div>
-                <div class="flower f-md f-svg-2" style="top: -1930px; transform: translateX(-50%) rotate(15deg);"></div>
-                <div class="flower f-sm f-svg-3" style="top: -1080px; transform: translateX(-50%) rotate(-10deg);"></div>
-                <div class="flower f-xl f-svg-1" style="top: -380px; transform: translateX(-50%) rotate(5deg);"></div>
+                <div class="flower f-md f-svg-2" style="top: -1930px; transform: translateX(-50%) rotate(15deg) translateZ(0);"></div>
+                <div class="flower f-sm f-svg-3" style="top: -1080px; transform: translateX(-50%) rotate(-10deg) translateZ(0);"></div>
+                <div class="flower f-xl f-svg-1" style="top: -380px; transform: translateX(-50%) rotate(5deg) translateZ(0);"></div>
             </div>
         </div>
 
         <div class="chain-track chain-heavy chain-5">
             <div class="flower-loop">
                 <div class="flower f-md f-svg-3" style="top: 450px;"></div>
-                <div class="flower f-lg f-svg-1" style="top: 1100px; transform: translateX(-50%) rotate(-20deg);"></div>
-                <div class="flower f-xl f-svg-2" style="top: 2200px; transform: translateX(-50%) rotate(12deg);"></div>
+                <div class="flower f-lg f-svg-1" style="top: 1100px; transform: translateX(-50%) rotate(-20deg) translateZ(0);"></div>
+                <div class="flower f-xl f-svg-2" style="top: 2200px; transform: translateX(-50%) rotate(12deg) translateZ(0);"></div>
                 
                 <div class="flower f-md f-svg-3" style="top: -2430px;"></div>
-                <div class="flower f-lg f-svg-1" style="top: -1780px; transform: translateX(-50%) rotate(-20deg);"></div>
-                <div class="flower f-xl f-svg-2" style="top: -680px; transform: translateX(-50%) rotate(12deg);"></div>
+                <div class="flower f-lg f-svg-1" style="top: -1780px; transform: translateX(-50%) rotate(-20deg) translateZ(0);"></div>
+                <div class="flower f-xl f-svg-2" style="top: -680px; transform: translateX(-50%) rotate(12deg) translateZ(0);"></div>
             </div>
         </div>
 
         <div class="chain-track chain-heavy chain-7">
             <div class="flower-loop">
-                <div class="flower f-sm f-svg-2" style="top: 150px; transform: translateX(-50%) rotate(-15deg);"></div>
-                <div class="flower f-lg f-svg-3" style="top: 1300px; transform: translateX(-50%) rotate(25deg);"></div>
+                <div class="flower f-sm f-svg-2" style="top: 150px; transform: translateX(-50%) rotate(-15deg) translateZ(0);"></div>
+                <div class="flower f-lg f-svg-3" style="top: 1300px; transform: translateX(-50%) rotate(25deg) translateZ(0);"></div>
                 <div class="flower f-md f-svg-1" style="top: 1900px;"></div>
-                <div class="flower f-xl f-svg-2" style="top: 2600px; transform: translateX(-50%) rotate(-8deg);"></div>
+                <div class="flower f-xl f-svg-2" style="top: 2600px; transform: translateX(-50%) rotate(-8deg) translateZ(0);"></div>
                 
-                <div class="flower f-sm f-svg-2" style="top: -2730px; transform: translateX(-50%) rotate(-15deg);"></div>
-                <div class="flower f-lg f-svg-3" style="top: -1580px; transform: translateX(-50%) rotate(25deg);"></div>
+                <div class="flower f-sm f-svg-2" style="top: -2730px; transform: translateX(-50%) rotate(-15deg) translateZ(0);"></div>
+                <div class="flower f-lg f-svg-3" style="top: -1580px; transform: translateX(-50%) rotate(25deg) translateZ(0);"></div>
                 <div class="flower f-md f-svg-1" style="top: -980px;"></div>
-                <div class="flower f-xl f-svg-2" style="top: -280px; transform: translateX(-50%) rotate(-8deg);"></div>
+                <div class="flower f-xl f-svg-2" style="top: -280px; transform: translateX(-50%) rotate(-8deg) translateZ(0);"></div>
             </div>
         </div>
     </div>
@@ -97,7 +95,7 @@
     <!-- Scrollable Stage Content -->
     <main class="page-content">
         
-        <!-- SECTION 1: Logo -->
+        <!-- SECTION 1: Header & Logo -->
         <section class="hero-section">
             <div class="hero-header-container">
                 <span class="cycle-text t1">SHOP</span>
@@ -117,15 +115,24 @@
             <h2 class="collection-title">THE ARDENT</h2>
             <p class="collection-subtitle">limited time collection</p>
             
-            <div class="trio-grid">
-                <div class="trio-item">
-                    <img src="https://res.cloudinary.com/bqio04wg/image/upload/v1792425831/fuaieruwfiuaheuicaw.webp" alt="The Ardent 1">
+            <div class="trio-container">
+                <div class="trio-grid" id="ardentCarousel">
+                    <!-- Added loading="lazy" and decoding="async" for hyper-optimization -->
+                    <div class="trio-item active">
+                        <img src="https://res.cloudinary.com/bqio04wg/image/upload/v1792425831/fuaieruwfiuaheuicaw.webp" alt="The Ardent 1" loading="lazy" decoding="async">
+                    </div>
+                    <div class="trio-item next">
+                        <img src="https://res.cloudinary.com/bqio04wg/image/upload/v1792426010/oufeuhfeuoew-removebg-preview.png" alt="The Ardent 2" loading="lazy" decoding="async">
+                    </div>
+                    <div class="trio-item prev">
+                        <img src="https://res.cloudinary.com/bqio04wg/image/upload/v1792426031/woeq-removebg-preview.png" alt="The Ardent 3" loading="lazy" decoding="async">
+                    </div>
                 </div>
-                <div class="trio-item">
-                    <img src="https://res.cloudinary.com/bqio04wg/image/upload/v1792426010/oufeuhfeuoew-removebg-preview.png" alt="The Ardent 2">
-                </div>
-                <div class="trio-item">
-                    <img src="https://res.cloudinary.com/bqio04wg/image/upload/v1792426031/woeq-removebg-preview.png" alt="The Ardent 3">
+
+                <!-- 3D Carousel Mobile Navigation Controls -->
+                <div class="carousel-nav">
+                    <button class="car-btn" id="carPrev" aria-label="Previous Item">&#10094;</button>
+                    <button class="car-btn" id="carNext" aria-label="Next Item">&#10095;</button>
                 </div>
             </div>
         </section>
@@ -175,7 +182,6 @@
                 <h2>Terms of Service</h2>
                 <p><strong>Effective Date:</strong> October 19, 2026</p>
                 <p>Welcome to <strong>mentalmonster</strong> (operated by mentalmonster Pte. Ltd., UEN: 2026XXXXXX). By accessing our website and purchasing our fitness apparel, you agree to comply with and be bound by the following terms.</p>
-
                 <h3>1. Global Shipping, Customs, & Fulfillment</h3>
                 <p>We provide worldwide shipping. Please note the following regarding international orders:</p>
                 <ul>
@@ -183,14 +189,12 @@
                     <li><strong>Duties and Import Taxes:</strong> International shipments outside of Singapore may be subject to customs duties, import taxes, or brokerage fees levied by your destination country. These additional fees are <strong>entirely the responsibility of the recipient</strong>. mentalmonster has no control over these charges and cannot predict their economic variance.</li>
                     <li><strong>Customs Clearance Delays:</strong> Delivery timelines are estimates. We are not liable for transit delays caused by destination customs clearance protocols or international courier backlogs.</li>
                 </ul>
-
                 <h3>2. Payment Processing Security (Stripe)</h3>
                 <p>All online financial transactions are executed securely through our integrated third-party payment gateway provider, <strong>Stripe, Inc.</strong></p>
                 <ul>
                     <li>By finalizing your order, you authorize Stripe to charge your designated credit card, debit card, or alternative payment channel for the total checkout amount.</li>
                     <li>mentalmonster does not capture, store, or process raw financial account metrics or CVV codes on our native infrastructure. Stripe handles all security and processing protocols autonomously.</li>
                 </ul>
-
                 <h3>3. Product Integrity, Sizing, & Dynamic Apparel Performance</h3>
                 <p>Our gear is built for high-performance athletic applications. However, customers must note:</p>
                 <ul>
@@ -198,10 +202,8 @@
                     <li><strong>Sizing Variances:</strong> Compression activewear is engineered to fit tightly. Please cross-reference our specific structural sizing metrics before ordering to prevent unexpected fit issues.</li>
                     <li><strong>Color Discrepancies:</strong> We try our best to display product colors accurately, but variances in hardware screens can alter perceived hues.</li>
                 </ul>
-
                 <h3>4. Order Refusal & Anti-Commercial Scalping</h3>
                 <p>We reserve the absolute right to limit, cancel, or reject any orders placed on our website. This includes orders that appear to be placed by commercial dealers, drop-shipping entities, or unauthorized retail scalpers attempting to commercially resell mentalmonster inventory.</p>
-
                 <h3>5. Governing Law</h3>
                 <p>These terms are governed exclusively by and construed in compliance with the Laws of Singapore. Any structural disputes will be settled under the jurisdiction of the Singapore courts.</p>
             </div>
@@ -216,24 +218,20 @@
                 <h2>Privacy Policy</h2>
                 <p><strong>Effective Date:</strong> October 19, 2026</p>
                 <p>At <strong>mentalmonster</strong>, we respect your data privacy. This policy outlines how we handle data in accordance with the Singapore Personal Data Protection Act (PDPA) and global e-commerce security standards.</p>
-
                 <h3>1. Data Shared with Third-Party Processors</h3>
                 <p>To run an effective global storefront, we share specific, essential customer metrics with verified global operations networks:</p>
                 <ul>
                     <li><strong>Stripe (Secure Payments):</strong> When you place an order, your core payment credentials go directly into <strong>Stripe's secure tokenization systems</strong>. mentalmonster never views, processes, or logs your raw banking data or credit card numbers. Stripe processes this transaction data autonomously to verify funds and flag fraudulent accounts.</li>
                     <li><strong>Global Fulfillment & Logistics Providers:</strong> Your full name, delivery address, phone number, and commercial invoice details are passed securely to our local and international shipping networks (e.g., DHL, FedEx, SingPost) to facilitate successful customs entry and home delivery.</li>
                 </ul>
-
                 <h3>2. Information We Collect</h3>
                 <p>We collect essential operational details to process your activewear orders, including:</p>
                 <ul>
                     <li><strong>Identity & Contact Details:</strong> Name, shipping address, billing details, business/personal email, and contact number.</li>
                     <li><strong>Sizing Profiles & Preferences:</strong> Historic choice preferences to optimize custom catalog layout recommendations.</li>
                 </ul>
-
                 <h3>3. Cross-Border Data Transfers</h3>
                 <p>Because mentalmonster services a global audience, your operational info may be transferred, hosted, or accessed across servers located internationally. We guarantee that all external digital infrastructure platforms comply with privacy standards that mirror or exceed Singapore's local PDPA requirements.</p>
-
                 <h3>4. Your Legal Access and Corrections Rights</h3>
                 <p>Under the PDPA, you retain complete rights to access, amend, correct, or request the deletion of your historical personal record. For any system updates or to withdraw consent for direct marketing newsletters, please drop a note to our digital operations coordinator directly at <strong>inquiries@mentalmonster.com</strong>.</p>
             </div>
@@ -241,15 +239,52 @@
     </div>
 
     <script>
-        // Smooth Parallax Spider
+        // High-Performance Parallax Spider Logic
+        let ticking = false;
+        const spiderThread = document.getElementById("spiderThread");
+        const spiderBody = document.getElementById("spiderBody");
+
         document.addEventListener("scroll", () => {
-            const scrollY = window.scrollY;
-            const spiderThread = document.getElementById("spiderThread");
-            const dropDistance = scrollY * 0.55; 
-            spiderThread.style.height = (40 + dropDistance) + "px"; 
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    const scrollPos = window.scrollY || window.pageYOffset;
+                    const drop = scrollPos * 0.55;
+                    spiderThread.style.transform = `scaleY(${(40 + drop) / 40})`;
+                    spiderBody.style.transform = `translate3d(0, ${drop}px, 0)`;
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        }, { passive: true });
+
+        // 3D Carousel Logic (Only visible/active on Mobile CSS)
+        const trioItems = document.querySelectorAll('.trio-item');
+        let currentCarIndex = 0;
+
+        function updateCarousel() {
+            trioItems.forEach((item, index) => {
+                item.classList.remove('active', 'prev', 'next');
+                if (index === currentCarIndex) {
+                    item.classList.add('active');
+                } else if (index === (currentCarIndex - 1 + trioItems.length) % trioItems.length) {
+                    item.classList.add('prev');
+                } else {
+                    item.classList.add('next');
+                }
+            });
+        }
+
+        document.getElementById('carNext').addEventListener('click', () => {
+            currentCarIndex = (currentCarIndex + 1) % trioItems.length;
+            updateCarousel();
         });
 
-        // Modal Logic
+        document.getElementById('carPrev').addEventListener('click', () => {
+            currentCarIndex = (currentCarIndex - 1 + trioItems.length) % trioItems.length;
+            updateCarousel();
+        });
+
+        // Modals
         function openModal(modalId) {
             document.getElementById(modalId).classList.add('active');
             document.body.style.overflow = 'hidden'; 
