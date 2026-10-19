@@ -1,0 +1,450 @@
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Merriweather:ital,wght@0,300;0,700;1,400&family=Spectral:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Urbanist:wght@300;500;700&display=swap');
+
+:root {
+    --maroon-bg: #5e080d;
+    --maroon-deep: #290204;
+    --brand-cream: #f4e8c9; 
+    --gold-accent: #e5c158;
+    --pure-black: #080808;
+
+    /* 3D Metallic Curb Chain Tile */
+    --chain-graphic: url("data:image/svg+xml,%3Csvg width='32' height='96' viewBox='0 0 32 96' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='chrome' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23ffffff'/%3E%3Cstop offset='35%25' stop-color='%23d4c8be'/%3E%3Cstop offset='50%25' stop-color='%237a6a60'/%3E%3Cstop offset='80%25' stop-color='%23f3e5d8'/%3E%3Cstop offset='100%25' stop-color='%234a3b32'/%3E%3C/linearGradient%3E%3ClinearGradient id='core' x1='100%25' y1='0%25' x2='0%25' y2='0%25'%3E%3Cstop offset='0%25' stop-color='%23ffffff'/%3E%3Cstop offset='50%25' stop-color='%23a8998c'/%3E%3Cstop offset='100%25' stop-color='%233d2e26'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect x='4' y='3' width='24' height='44' rx='11' fill='none' stroke='url(%23chrome)' stroke-width='5.5'/%3E%3Crect x='5.5' y='4.5' width='21' height='41' rx='9.5' fill='none' stroke='rgba(255,255,255,0.45)' stroke-width='1'/%3E%3Crect x='4' y='51' width='24' height='44' rx='11' fill='none' stroke='url(%23chrome)' stroke-width='5.5'/%3E%3Crect x='5.5' y='52.5' width='21' height='41' rx='9.5' fill='none' stroke='rgba(255,255,255,0.45)' stroke-width='1'/%3E%3Crect x='11.5' y='36' width='9' height='26' rx='4.5' fill='%231a0204' stroke='url(%23core)' stroke-width='4.5'/%3E%3Crect x='11.5' y='-12' width='9' height='26' rx='4.5' fill='%231a0204' stroke='url(%23core)' stroke-width='4.5'/%3E%3Crect x='11.5' y='84' width='9' height='26' rx='4.5' fill='%231a0204' stroke='url(%23core)' stroke-width='4.5'/%3E%3C/svg%3E");
+
+    /* Custom SVGs for Flowers */
+    --svg-f1: url("data:image/svg+xml,%3Csvg viewBox='0 0 64 64' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='32' cy='32' r='22' fill='%234a050b' stroke='%23f4e8c9' stroke-width='1'/%3E%3Cpath d='M32 10 Q 54 10 50 32 Q 54 54 32 50 Q 10 54 14 32 Q 10 10 32 10 Z' fill='%236e0911' stroke='%23f4e8c9' stroke-width='1.5' opacity='0.9'/%3E%3Cpath d='M32 18 C 42 18 42 46 32 46 C 22 46 22 18 32 18 Z' fill='%23290204' stroke='%23f4e8c9' stroke-width='1'/%3E%3Ccircle cx='32' cy='32' r='4' fill='%23f4e8c9'/%3E%3C/svg%3E");
+    --svg-f2: url("data:image/svg+xml,%3Csvg viewBox='0 0 64 64' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M32 4 L 40 24 L 60 32 L 40 40 L 32 60 L 24 40 L 4 32 L 24 24 Z' fill='%23f4e8c9' stroke='%234a050b' stroke-width='1.5'/%3E%3Cpath d='M32 16 L 36 28 L 48 32 L 36 36 L 32 48 L 28 36 L 16 32 L 28 28 Z' fill='%23a8998c'/%3E%3C/svg%3E");
+    --svg-f3: url("data:image/svg+xml,%3Csvg viewBox='0 0 64 64' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M32 6 L 38 26 L 58 26 L 42 38 L 48 58 L 32 46 L 16 58 L 22 38 L 6 26 L 26 26 Z' fill='%231a0204' stroke='%238c7a6b' stroke-width='2'/%3E%3Ccircle cx='32' cy='35' r='8' fill='%235e080d'/%3E%3C/svg%3E");
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--maroon-bg);
+    background-image: radial-gradient(circle at center, var(--maroon-bg) 0%, var(--maroon-deep) 100%);
+    width: 100%;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+    font-family: 'Merriweather', serif;
+}
+
+/* =========================================
+   TOP LEFT GOLD SPIDER WEB & HANGING SPIDER
+   ========================================= */
+.web-corner {
+    position: fixed;
+    top: -15px;
+    left: -15px;
+    width: 250px;
+    height: 250px;
+    z-index: 20;
+    pointer-events: none;
+    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.6));
+}
+
+.spider-web-svg { width: 100%; height: 100%; }
+
+.spider-rig {
+    position: fixed;
+    top: 155px; /* Pulled up so the thread originates inside the web boundaries */
+    left: 48px; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 19;
+    pointer-events: none;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.7));
+}
+
+.spider-thread {
+    width: 1.5px;
+    height: 40px; 
+    background-color: var(--gold-accent);
+    opacity: 0.8;
+}
+
+.spider {
+    margin-top: -3px; 
+    will-change: transform;
+}
+
+/* =========================================
+   FIXED BACKGROUND METALLIC CHAIN MATRIX
+   ========================================= */
+.chains-container {
+    position: fixed; 
+    inset: -30% 0;
+    width: 100vw;
+    height: 160vh;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.chain-track {
+    position: absolute;
+    height: 100%;
+    background-repeat: repeat-y;
+    will-change: background-position;
+}
+
+.chain-heavy {
+    width: 72px; 
+    background-image: var(--chain-graphic);
+    background-size: 32px 96px;
+    background-position: center 0px;
+    opacity: 0.88;
+    filter: drop-shadow(-6px 8px 10px rgba(0, 0, 0, 0.85));
+    z-index: 3;
+    animation: scrollHeavy 32s linear infinite;
+}
+
+.flower-loop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    animation: scrollLoop 32s linear infinite;
+}
+
+.flower {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.6));
+    will-change: transform;
+}
+
+.f-svg-1 { background-image: var(--svg-f1); }
+.f-svg-2 { background-image: var(--svg-f2); }
+.f-svg-3 { background-image: var(--svg-f3); }
+
+.f-sm { width: 35px; height: 35px; }
+.f-md { width: 50px; height: 50px; }
+.f-lg { width: 70px; height: 70px; }
+.f-xl { width: 95px; height: 95px; }
+
+.chain-mid {
+    width: 24px;
+    background-image: var(--chain-graphic);
+    background-size: 24px 72px;
+    opacity: 0.45;
+    filter: drop-shadow(-4px 5px 6px rgba(0, 0, 0, 0.7)) blur(0.4px);
+    z-index: 2;
+    animation: scrollMid 36s linear infinite;
+}
+
+.chain-bg {
+    width: 16px;
+    background-image: var(--chain-graphic);
+    background-size: 16px 48px;
+    opacity: 0.22;
+    filter: blur(1.5px);
+    z-index: 1;
+    animation: scrollBg 48s linear infinite;
+}
+
+@keyframes scrollHeavy { from { background-position: center 0px; } to { background-position: center 2880px; } }
+@keyframes scrollLoop { from { transform: translateY(0px); } to { transform: translateY(2880px); } }
+@keyframes scrollMid { from { background-position-y: 0px; } to { background-position-y: 2880px; } }
+@keyframes scrollBg { from { background-position-y: 0px; } to { background-position-y: 2880px; } }
+
+.chain-1 { right: 2vw;  transform: rotate(-14deg); }
+.chain-2 { right: 7vw;  transform: rotate(11deg); animation-direction: reverse; }
+.chain-3 { right: 11vw; transform: rotate(-8deg); }
+.chain-3, .chain-3 .flower-loop { animation-duration: 28s; animation-delay: -2s; }
+.chain-4 { right: 18vw; transform: rotate(18deg); }
+.chain-5 { right: 22vw; transform: rotate(6deg); }
+.chain-5, .chain-5 .flower-loop { animation-direction: reverse; animation-duration: 34s; animation-delay: -9s; }
+.chain-6 { right: 29vw; transform: rotate(-15deg);  animation-duration: 40s; }
+.chain-7 { right: 34vw; transform: rotate(9deg); opacity: 0.75; }
+.chain-7, .chain-7 .flower-loop { animation-duration: 24s; animation-delay: -5s; }
+
+/* =========================================
+   PAGE CONTENT STAGE
+   ========================================= */
+.page-content {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+}
+
+/* SECTION 1: HERO & LOGO */
+.hero-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10vh 2rem 5rem 2rem;
+}
+
+.hero-header-container {
+    position: relative;
+    height: 60px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: -1.5rem; 
+}
+
+.cycle-text {
+    font-family: 'Abril Fatface', serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    color: var(--brand-cream);
+    text-shadow: 0 8px 25px rgba(0, 0, 0, 0.8), 0 2px 5px rgba(0,0,0,0.5);
+    position: absolute;
+    opacity: 0;
+    visibility: hidden;
+    letter-spacing: 2px;
+    text-align: center;
+    white-space: nowrap;
+    animation: hardCut 6s infinite;
+}
+
+.t1 { animation-delay: 0s; }
+.t2 { animation-delay: 2s; }
+.t3 { animation-delay: 4s; }
+
+@keyframes hardCut {
+    0%, 33.32% { opacity: 1; visibility: visible; }
+    33.33%, 100% { opacity: 0; visibility: hidden; }
+}
+
+.center-logo {
+    max-width: min(550px, 90vw);
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.65));
+}
+
+/* SECTION 2: THE ARDENT COLLECTION */
+.collection-section {
+    padding: 4rem 2rem 6rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.collection-title {
+    font-size: 3.5rem;
+    color: var(--brand-cream);
+    letter-spacing: 3px;
+    margin-bottom: 0.2rem;
+    text-shadow: 0 4px 15px rgba(0,0,0,0.5);
+}
+
+.collection-subtitle {
+    font-family: 'Urbanist', sans-serif;
+    font-size: 1.1rem;
+    color: var(--gold-accent);
+    font-style: italic;
+    letter-spacing: 2px;
+    margin-bottom: 4rem;
+    text-transform: uppercase;
+}
+
+.trio-grid {
+    display: flex;
+    justify-content: center;
+    gap: 3rem; 
+    width: 100%;
+    max-width: 1100px; 
+}
+
+.trio-item {
+    flex: 1;
+    position: relative;
+    cursor: pointer;
+    /* Removed background-color to let true transparent PNGs float */
+}
+
+.trio-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: drop-shadow(0 15px 25px rgba(0,0,0,0.6));
+    will-change: transform; 
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.trio-item:hover img {
+    transform: scale(1.08); 
+}
+
+/* SECTION 3: OUR PHILOSOPHY */
+.philosophy-section {
+    padding: 4rem 2rem 8rem 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+    color: var(--brand-cream);
+    font-family: 'Spectral', serif;
+}
+
+.philosophy-title {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    letter-spacing: 2px;
+    text-shadow: 0 4px 10px rgba(0,0,0,0.4);
+}
+
+.phil-p1 {
+    font-size: 1.4rem;
+    line-height: 1.8;
+    margin-bottom: 2.5rem;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+}
+
+.phil-p2 {
+    font-size: 1.4rem;
+    line-height: 1.8;
+    text-align: right;
+    margin-left: 20%;
+    color: var(--gold-accent);
+    text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+}
+
+/* SECTION 4: SOLID BLACK FOOTER */
+.black-footer {
+    background-color: var(--pure-black);
+    color: #a0a0a0;
+    font-family: 'Urbanist', sans-serif;
+    padding: 4rem 3rem;
+    position: relative;
+    z-index: 20;
+    border-top: 1px solid #222;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 3rem;
+}
+
+.footer-left p {
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+}
+
+.legal-links {
+    margin-top: 1.5rem;
+    font-size: 0.85rem;
+}
+
+.legal-links span {
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    transition: color 0.2s;
+}
+
+.legal-links span:hover {
+    color: var(--brand-cream);
+}
+
+.footer-right h3 {
+    color: var(--brand-cream);
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    letter-spacing: 1px;
+}
+
+.footer-right p {
+    font-size: 0.95rem;
+    margin-bottom: 0.8rem;
+}
+
+.footer-right a {
+    color: var(--gold-accent);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.footer-right a:hover {
+    color: #fff;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+/* MODALS FOR LEGAL DOCUMENTS */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 1000;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-content {
+    background: #ffffff;
+    width: 90%;
+    max-width: 800px;
+    max-height: 85vh;
+    border-radius: 6px;
+    position: relative;
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+    overflow-y: auto;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: #333;
+}
+
+.modal-overlay.active .modal-content {
+    transform: translateY(0);
+}
+
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    font-size: 2rem;
+    color: #111;
+    cursor: pointer;
+    line-height: 1;
+    z-index: 10;
+}
+
+.modal-body {
+    padding: 40px;
+}
+
+.modal-body h2 { border-bottom: 2px solid #222; padding-bottom: 10px; font-size: 26px; margin-bottom: 20px; }
+.modal-body h3 { font-size: 18px; margin-top: 30px; margin-bottom: 10px; color: #111; }
+.modal-body p, .modal-body li { font-size: 15px; color: #444; line-height: 1.6; margin-bottom: 10px; }
+.modal-body ul { padding-left: 20px; margin-bottom: 15px; }
+
+@media (max-width: 768px) {
+    .trio-grid { flex-direction: column; }
+    .phil-p2 { margin-left: 0; text-align: left; }
+    .footer-content { flex-direction: column; text-align: center; align-items: center; }
+    .spider-rig { left: 10px; }
+}
