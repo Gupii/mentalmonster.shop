@@ -7,19 +7,14 @@
     --gold-accent: #e5c158;
     --pure-black: #080808;
 
-    /* Base 3D SVG Chains */
+    /* Base SVG Assets */
     --chain-graphic: url("data:image/svg+xml,%3Csvg width='32' height='96' viewBox='0 0 32 96' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='chrome' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23ffffff'/%3E%3Cstop offset='35%25' stop-color='%23d4c8be'/%3E%3Cstop offset='50%25' stop-color='%237a6a60'/%3E%3Cstop offset='80%25' stop-color='%23f3e5d8'/%3E%3Cstop offset='100%25' stop-color='%234a3b32'/%3E%3C/linearGradient%3E%3ClinearGradient id='core' x1='100%25' y1='0%25' x2='0%25' y2='0%25'%3E%3Cstop offset='0%25' stop-color='%23ffffff'/%3E%3Cstop offset='50%25' stop-color='%23a8998c'/%3E%3Cstop offset='100%25' stop-color='%233d2e26'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect x='4' y='3' width='24' height='44' rx='11' fill='none' stroke='url(%23chrome)' stroke-width='5.5'/%3E%3Crect x='5.5' y='4.5' width='21' height='41' rx='9.5' fill='none' stroke='rgba(255,255,255,0.45)' stroke-width='1'/%3E%3Crect x='4' y='51' width='24' height='44' rx='11' fill='none' stroke='url(%23chrome)' stroke-width='5.5'/%3E%3Crect x='5.5' y='52.5' width='21' height='41' rx='9.5' fill='none' stroke='rgba(255,255,255,0.45)' stroke-width='1'/%3E%3Crect x='11.5' y='36' width='9' height='26' rx='4.5' fill='%231a0204' stroke='url(%23core)' stroke-width='4.5'/%3E%3Crect x='11.5' y='-12' width='9' height='26' rx='4.5' fill='%231a0204' stroke='url(%23core)' stroke-width='4.5'/%3E%3Crect x='11.5' y='84' width='9' height='26' rx='4.5' fill='%231a0204' stroke='url(%23core)' stroke-width='4.5'/%3E%3C/svg%3E");
-
     --svg-f1: url("data:image/svg+xml,%3Csvg viewBox='0 0 64 64' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='32' cy='32' r='22' fill='%234a050b' stroke='%23f4e8c9' stroke-width='1'/%3E%3Cpath d='M32 10 Q 54 10 50 32 Q 54 54 32 50 Q 10 54 14 32 Q 10 10 32 10 Z' fill='%236e0911' stroke='%23f4e8c9' stroke-width='1.5' opacity='0.9'/%3E%3Cpath d='M32 18 C 42 18 42 46 32 46 C 22 46 22 18 32 18 Z' fill='%23290204' stroke='%23f4e8c9' stroke-width='1'/%3E%3Ccircle cx='32' cy='32' r='4' fill='%23f4e8c9'/%3E%3C/svg%3E");
     --svg-f2: url("data:image/svg+xml,%3Csvg viewBox='0 0 64 64' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M32 4 L 40 24 L 60 32 L 40 40 L 32 60 L 24 40 L 4 32 L 24 24 Z' fill='%23f4e8c9' stroke='%234a050b' stroke-width='1.5'/%3E%3Cpath d='M32 16 L 36 28 L 48 32 L 36 36 L 32 48 L 28 36 L 16 32 L 28 28 Z' fill='%23a8998c'/%3E%3C/svg%3E");
     --svg-f3: url("data:image/svg+xml,%3Csvg viewBox='0 0 64 64' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M32 6 L 38 26 L 58 26 L 42 38 L 48 58 L 32 46 L 16 58 L 22 38 L 6 26 L 26 26 Z' fill='%231a0204' stroke='%238c7a6b' stroke-width='2'/%3E%3Ccircle cx='32' cy='35' r='8' fill='%235e080d'/%3E%3C/svg%3E");
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
     background-color: var(--maroon-bg);
@@ -40,7 +35,8 @@ body {
     left: -15px;
     width: 250px;
     height: 250px;
-    z-index: 20;
+    /* Dropped z-index to 5 so it stays safely behind text and logo */
+    z-index: 5;
     pointer-events: none;
     transform: translateZ(0);
 }
@@ -54,13 +50,13 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    z-index: 19;
+    z-index: 5;
     pointer-events: none;
     transform: translateZ(0);
 }
 
 .spider-thread {
-    width: 2px; /* Int value prevents sub-pixel rendering lag on mobile GPUs */
+    width: 2px; 
     height: 40px; 
     background-color: var(--gold-accent);
     opacity: 0.8;
@@ -104,48 +100,32 @@ body {
 
 .flower-loop {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0; width: 100%; height: 100%;
     pointer-events: none;
     animation: scrollLoop 32s linear infinite;
 }
 
 .flower {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
+    position: absolute; left: 50%; transform: translateX(-50%);
+    background-size: contain; background-position: center; background-repeat: no-repeat;
 }
 
 .f-svg-1 { background-image: var(--svg-f1); }
 .f-svg-2 { background-image: var(--svg-f2); }
 .f-svg-3 { background-image: var(--svg-f3); }
-
 .f-sm { width: 35px; height: 35px; }
 .f-md { width: 50px; height: 50px; }
 .f-lg { width: 70px; height: 70px; }
 .f-xl { width: 95px; height: 95px; }
 
 .chain-mid {
-    width: 24px;
-    background-image: var(--chain-graphic);
-    background-size: 24px 72px;
-    opacity: 0.35;
-    z-index: 2;
-    animation: scrollMid 36s linear infinite;
+    width: 24px; background-image: var(--chain-graphic); background-size: 24px 72px;
+    opacity: 0.35; z-index: 2; animation: scrollMid 36s linear infinite;
 }
 
 .chain-bg {
-    width: 16px;
-    background-image: var(--chain-graphic);
-    background-size: 16px 48px;
-    opacity: 0.15;
-    z-index: 1;
-    animation: scrollBg 48s linear infinite;
+    width: 16px; background-image: var(--chain-graphic); background-size: 16px 48px;
+    opacity: 0.15; z-index: 1; animation: scrollBg 48s linear infinite;
 }
 
 @keyframes scrollHeavy { from { background-position: center 0px; } to { background-position: center 2880px; } }
@@ -163,6 +143,7 @@ body {
 .chain-6 { right: 29vw; transform: rotate(-15deg);  animation-duration: 40s; }
 .chain-7 { right: 34vw; transform: rotate(9deg); opacity: 0.75; }
 .chain-7, .chain-7 .flower-loop { animation-duration: 24s; animation-delay: -5s; }
+
 
 /* =========================================
    PAGE CONTENT STAGE
@@ -189,6 +170,7 @@ body {
     justify-content: center;
     align-items: center;
     margin-bottom: -1rem; 
+    z-index: 20; /* Ensures text stays above web */
 }
 
 .cycle-text {
@@ -202,13 +184,14 @@ body {
     letter-spacing: 2px;
     text-align: center;
     white-space: nowrap;
-    animation: hardCut 6s infinite;
+    /* Sped up to 3 seconds total (1 sec per word) */
+    animation: hardCut 3s infinite;
     transform: translateZ(0);
 }
 
 .t1 { animation-delay: 0s; }
-.t2 { animation-delay: 2s; }
-.t3 { animation-delay: 4s; }
+.t2 { animation-delay: 1s; }
+.t3 { animation-delay: 2s; }
 
 @keyframes hardCut {
     0%, 33.32% { opacity: 1; visibility: visible; }
@@ -224,6 +207,7 @@ body {
     margin-top: 1rem;
     filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.65));
     transform: translateZ(0);
+    z-index: 20;
 }
 
 /* SECTION 2: THE ARDENT COLLECTION */
@@ -259,10 +243,7 @@ body {
     position: relative;
 }
 
-/* Desktop Defaults: Standard Flex Grid */
-.carousel-nav {
-    display: none; /* Hide buttons on desktop */
-}
+.carousel-nav { display: none; }
 
 .trio-grid {
     display: flex;
@@ -344,107 +325,32 @@ body {
     gap: 3rem;
 }
 
-.footer-left p {
-    font-size: 0.95rem;
-    margin-bottom: 0.5rem;
-}
+.footer-left p { margin-bottom: 0.5rem; font-size: 0.95rem; }
+.legal-links { margin-top: 1.5rem; font-size: 0.85rem; }
+.legal-links span { cursor: pointer; text-decoration: underline; text-underline-offset: 4px; transition: color 0.2s; }
+.legal-links span:hover { color: var(--brand-cream); }
 
-.legal-links {
-    margin-top: 1.5rem;
-    font-size: 0.85rem;
-}
+.footer-right h3 { color: var(--brand-cream); font-size: 1.2rem; margin-bottom: 1rem; letter-spacing: 1px; }
+.footer-right p { font-size: 0.95rem; margin-bottom: 0.8rem; }
+.footer-right a { color: var(--gold-accent); text-decoration: none; transition: color 0.2s; }
+.footer-right a:hover { color: #fff; text-decoration: underline; text-underline-offset: 4px; }
 
-.legal-links span {
-    cursor: pointer;
-    text-decoration: underline;
-    text-underline-offset: 4px;
-    transition: color 0.2s;
-}
-
-.legal-links span:hover {
-    color: var(--brand-cream);
-}
-
-.footer-right h3 {
-    color: var(--brand-cream);
-    font-size: 1.2rem;
-    margin-bottom: 1rem;
-    letter-spacing: 1px;
-}
-
-.footer-right p {
-    font-size: 0.95rem;
-    margin-bottom: 0.8rem;
-}
-
-.footer-right a {
-    color: var(--gold-accent);
-    text-decoration: none;
-    transition: color 0.2s;
-}
-
-.footer-right a:hover {
-    color: #fff;
-    text-decoration: underline;
-    text-underline-offset: 4px;
-}
-
-/* MODALS FOR LEGAL DOCUMENTS */
+/* MODALS */
 .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.85);
-    backdrop-filter: blur(4px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
-    z-index: 1000;
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+    background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(4px);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none; transition: opacity 0.3s ease; z-index: 1000;
 }
-
-.modal-overlay.active {
-    opacity: 1;
-    pointer-events: auto;
-}
-
+.modal-overlay.active { opacity: 1; pointer-events: auto; }
 .modal-content {
-    background: #ffffff;
-    width: 90%;
-    max-width: 800px;
-    max-height: 85vh;
-    border-radius: 6px;
-    position: relative;
-    transform: translateY(20px);
-    transition: transform 0.3s ease;
-    overflow-y: auto;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    color: #333;
+    background: #ffffff; width: 90%; max-width: 800px; max-height: 85vh; border-radius: 6px;
+    position: relative; transform: translateY(20px); transition: transform 0.3s ease;
+    overflow-y: auto; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; color: #333;
 }
-
-.modal-overlay.active .modal-content {
-    transform: translateY(0);
-}
-
-.modal-close {
-    position: absolute;
-    top: 15px;
-    right: 25px;
-    font-size: 2rem;
-    color: #111;
-    cursor: pointer;
-    line-height: 1;
-    z-index: 10;
-}
-
-.modal-body {
-    padding: 40px;
-}
-
+.modal-overlay.active .modal-content { transform: translateY(0); }
+.modal-close { position: absolute; top: 15px; right: 25px; font-size: 2rem; color: #111; cursor: pointer; line-height: 1; z-index: 10; }
+.modal-body { padding: 40px; }
 .modal-body h2 { border-bottom: 2px solid #222; padding-bottom: 10px; font-size: 26px; margin-bottom: 20px; }
 .modal-body h3 { font-size: 18px; margin-top: 30px; margin-bottom: 10px; color: #111; }
 .modal-body p, .modal-body li { font-size: 15px; color: #444; line-height: 1.6; margin-bottom: 10px; }
@@ -452,89 +358,53 @@ body {
 
 
 /* =========================================
-   MOBILE-SPECIFIC HYPER OPTIMIZATIONS
+   MOBILE-SPECIFIC FIXES
    ========================================= */
 @media (max-width: 768px) {
-    /* 1. Eliminate Background Lag: Cull all non-essential chains */
+    
+    /* 1. Prevent Web/Text Collision */
+    .web-corner { width: 150px; height: 150px; transform: none; }
+    .spider-rig { top: 90px; left: 28px; transform: none; }
+    
+    /* Push content below web safely, pull text aggressively to logo */
+    .hero-section { padding-top: 18vh; }
+    .hero-header-container { margin-bottom: -2.5rem; }
+    .center-logo { margin-top: 0; }
+
+    /* 2. Chain Cull */
     .chain-bg, .chain-mid { display: none !important; }
     .chain-1, .chain-2, .chain-4, .chain-6 { display: none !important; }
-    
-    /* Re-space the remaining 3 heavy chains to look deliberate and clean */
     .chain-3 { right: -5vw; opacity: 0.6; }
     .chain-5 { right: 10vw; opacity: 0.45; }
     .chain-7 { right: 25vw; opacity: 0.3; }
 
-    /* 2. Philosophy & Footer Layout fixes */
+    /* 3. Footer Fixes */
     .phil-p2 { margin-left: 0; text-align: left; }
     .footer-content { flex-direction: column; text-align: center; align-items: center; }
-    .spider-rig { left: 10px; }
 
-    /* 3. The 3D Coverflow Carousel (Only kicks in on Mobile) */
+    /* 4. 3D Carousel (Mobile Only) */
     .trio-grid {
-        display: block;
-        position: relative;
-        height: 380px; 
-        perspective: 1200px;
-        transform-style: preserve-3d;
+        display: block; position: relative; height: 380px; 
+        perspective: 1200px; transform-style: preserve-3d;
     }
-
     .trio-item {
-        position: absolute;
-        top: 0; left: 0; right: 0;
-        margin: 0 auto;
-        width: 65%;
-        height: 100%;
+        position: absolute; top: 0; left: 0; right: 0; margin: 0 auto;
+        width: 65%; height: 100%;
         transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.5s, z-index 0.5s;
     }
-
-    .trio-item img {
-        height: 100%;
-        object-fit: contain;
-    }
-    
-    /* Kill hover zooms on mobile to prevent interference with 3D transforms */
+    .trio-item img { height: 100%; object-fit: contain; }
     .trio-item:hover img { transform: none; }
 
-    /* 3D Stage Positioning */
-    .trio-item.active {
-        transform: translateX(0) translateZ(0) rotateY(0);
-        opacity: 1;
-        z-index: 5;
-    }
-    .trio-item.prev {
-        transform: translateX(-55%) translateZ(-150px) rotateY(15deg);
-        opacity: 0.3;
-        z-index: 2;
-    }
-    .trio-item.next {
-        transform: translateX(55%) translateZ(-150px) rotateY(-15deg);
-        opacity: 0.3;
-        z-index: 2;
-    }
+    .trio-item.active { transform: translateX(0) translateZ(0) rotateY(0); opacity: 1; z-index: 5; }
+    .trio-item.prev { transform: translateX(-55%) translateZ(-150px) rotateY(15deg); opacity: 0.3; z-index: 2; }
+    .trio-item.next { transform: translateX(55%) translateZ(-150px) rotateY(-15deg); opacity: 0.3; z-index: 2; }
 
-    /* Show Navigation Buttons */
-    .carousel-nav {
-        display: flex;
-        justify-content: center;
-        gap: 1.5rem;
-        margin-top: 1rem;
-    }
+    .carousel-nav { display: flex; justify-content: center; gap: 1.5rem; margin-top: 1rem; }
     .car-btn {
-        background: transparent;
-        border: 1px solid var(--gold-accent);
-        color: var(--brand-cream);
-        font-size: 1.5rem;
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        background: transparent; border: 1px solid var(--gold-accent); color: var(--brand-cream);
+        font-size: 1.5rem; width: 50px; height: 50px; border-radius: 50%;
+        cursor: pointer; display: flex; align-items: center; justify-content: center;
         transition: background 0.2s, color 0.2s;
     }
-    .car-btn:active {
-        background: var(--gold-accent);
-        color: var(--maroon-deep);
-    }
+    .car-btn:active { background: var(--gold-accent); color: var(--maroon-deep); }
 }
