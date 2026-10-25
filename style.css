@@ -6,8 +6,7 @@
 }
 
 :root {
-    --bg-dark: #0a0103;
-    --bg-gradient-center: #310811;
+    --bg-dark: #120406; /* Flat, deep burgundy/black. NO VIGNETTE. */
     --text-light: #eaddd3;
     --gold-accent: #f2e2c4;
     --card-border: rgba(234, 221, 211, 0.2);
@@ -19,8 +18,8 @@
 }
 
 body {
-    background: radial-gradient(circle at 50% 30%, var(--bg-gradient-center) 0%, var(--bg-dark) 70%);
     background-color: var(--bg-dark);
+    /* Removed the radial-gradient completely */
     color: var(--text-light);
     font-family: var(--font-ui);
     min-height: 100vh;
@@ -38,56 +37,29 @@ a:hover {
     opacity: 0.7;
 }
 
-/* --- Optimized Lace Multi-Layer System --- */
-.lace-layer {
+/* --- Sharp Background Lace --- */
+.lace-background {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
     background-image: url('https://res.cloudinary.com/bqio04wg/image/upload/v1792953772/photo_2026-10-26_02-38-21-removebg-preview.png');
-    background-repeat: no-repeat;
+    background-size: 1400px; /* Fixed size prevents pixel stretching */
+    background-position: top center;
+    background-repeat: repeat; /* Tiles naturally instead of stretching */
     mix-blend-mode: multiply;
+    opacity: 0.35; /* Much clearer and more visible */
+    z-index: 0;
     pointer-events: none;
 }
 
-/* Background Layers */
-.layer-bg-1 {
-    background-size: cover; 
-    background-position: center;
-    opacity: 0.6;
-    z-index: 0;
-}
-.layer-bg-2 {
-    background-size: 120%; 
-    background-position: top center;
-    opacity: 0.4;
-    z-index: 1;
-    transform: rotate(1deg);
-}
-
-/* Foreground Layers */
-.layer-fg-1 {
-    background-size: cover;
-    background-position: center;
-    opacity: 0.5;
-    z-index: 10;
-    transform: scale(1.05); 
-}
-.layer-fg-2 {
-    background-size: 130%;
-    background-position: bottom right;
-    opacity: 0.35;
-    z-index: 11;
-    transform: scaleX(-1);
-}
-
-/* --- Responsive Flex Header --- */
+/* --- Strict Grid Header (Guarantees Logo Centering) --- */
 header {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr; /* Left links, Center logo, Right icons */
     align-items: center;
-    padding: 2rem 5rem;
+    padding: 2.5rem 5rem;
     position: relative;
     z-index: 20; 
 }
@@ -98,7 +70,7 @@ header {
     font-size: 0.75rem;
     letter-spacing: 2px;
     font-weight: 400;
-    flex: 1; /* Automatically pushes logo to the center */
+    justify-content: flex-start;
 }
 
 .nav-right {
@@ -106,7 +78,6 @@ header {
     gap: 2.5rem;
     font-size: 1.1rem;
     justify-content: flex-end;
-    flex: 1; /* Automatically pushes logo to the center */
 }
 
 .logo-container {
@@ -115,7 +86,7 @@ header {
 }
 
 .logo-container img {
-    height: 450px; /* Massive size for desktop as requested */
+    height: 380px; 
     width: auto;
     object-fit: contain;
 }
@@ -171,7 +142,7 @@ header {
 /* --- Collections Grid (The Cards) --- */
 .collections-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* This keeps them side-by-side */
+    grid-template-columns: 1fr 1fr;
     gap: 2rem;
     padding: 0 5rem;
     max-width: 1400px;
@@ -189,9 +160,10 @@ header {
     flex-direction: column;
 }
 
+/* Left Card (Removed Vignette completely) */
 .relentless-card {
-    background: linear-gradient(to bottom, rgba(26, 10, 12, 0.95), rgba(8, 3, 4, 0.98));
-    box-shadow: inset 0 0 100px rgba(0,0,0,0.8);
+    background-color: #0b0304; /* Solid, flat dark tone */
+    /* Removed box-shadow inset */
 }
 .card-content.centered {
     margin: auto;
@@ -201,10 +173,11 @@ header {
     align-items: center;
 }
 
+/* Right Card (Cropped exactly as requested) */
 .velvet-card {
     background-image: url('https://res.cloudinary.com/bqio04wg/image/upload/v1792953123/photo_2026-10-26_02-31-46.jpg');
-    background-size: cover;
-    background-position: center 30%;
+    background-size: 160%; /* Zooms in significantly */
+    background-position: center 65%; /* Shifts down to crop out the gym ceiling */
 }
 .card-content.bottom-aligned {
     margin-top: auto;
@@ -326,28 +299,31 @@ footer {
 }
 
 @media (max-width: 768px) {
-    /* 1. Header fixed: Stays in a single row with links left, logo center, icons right */
+    /* Fixed Logo Off-Centering */
     header {
         padding: 1.5rem 1rem;
+        grid-template-columns: 1fr auto 1fr; /* Locks logo to true center */
     }
     
+    /* Shrunk text so it doesn't push the logo */
     .nav-left {
-        gap: 0.6rem;
-        font-size: 0.55rem; /* Shrunk to fit row */
+        gap: 0.5rem;
+        font-size: 0.55rem;
     }
     
+    /* Shrunk icons to match */
     .nav-right {
         gap: 0.8rem;
-        font-size: 0.9rem; /* Shrunk to fit row */
+        font-size: 0.9rem;
     }
     
+    /* Logo sized up massively for mobile */
     .logo-container img {
-        height: 100px; /* Scaled perfectly so it doesn't break the flex row */
+        height: 180px; 
     }
     
-    /* 2. Hero Quote Scaling */
     .hero-quote {
-        margin: 1rem auto 3rem;
+        margin: 0.5rem auto 2.5rem;
         padding: 0 1rem;
     }
     
@@ -355,19 +331,25 @@ footer {
         font-size: 1rem;
     }
 
-    /* 3. Cards fixed: Forced to stay Side-by-Side */
+    /* Fixed Card Layout - Proper square proportions */
     .collections-grid {
-        grid-template-columns: 1fr 1fr !important; /* Forces 2 columns */
+        grid-template-columns: 1fr 1fr !important;
         gap: 0.5rem;
-        padding: 0 1rem;
-        height: 400px; /* Shorter height so they look proportional on small screens */
+        padding: 0 0.5rem;
+        height: 320px; /* Reduced from 400px to fix the "too tall" look */
     }
     
     .card {
         height: 100%;
     }
+    
+    /* Velvet Armour further optimized for small square */
+    .velvet-card {
+        background-size: 180%;
+        background-position: center 60%;
+    }
 
-    /* Card Fonts Scaled down to fit the side-by-side blocks */
+    /* Scaled text to fit inside the square mobile cards */
     .relentless-card h2 { font-size: 1.2rem; letter-spacing: 1px; }
     .script-font { font-size: 2.2rem; }
     .the-prefix { font-size: 0.55rem; letter-spacing: 2px; }
@@ -380,16 +362,12 @@ footer {
     
     .card-content.bottom-aligned { padding-bottom: 1.5rem; }
 
-    /* 4. Background fixed: Removes the invasive/crowded feeling */
-    .layer-bg-1 {
-        opacity: 0.2; /* Tone down the single background massively */
-    }
-    
-    .layer-bg-2, .layer-fg-1, .layer-fg-2 {
-        display: none; /* Hide all extra cluttered layers on mobile */
+    /* Keeps background subtle but sharp on mobile */
+    .lace-background {
+        opacity: 0.25;
+        background-size: 800px; /* Scale down pattern for smaller screen */
     }
 
-    /* Footer adjustments */
     footer {
         flex-direction: column;
         gap: 2rem;
