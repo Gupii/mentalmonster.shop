@@ -31,6 +31,7 @@
 
     <div class="page-wrapper">
         
+        <!-- Stable Header with Absolute Centered Logo -->
         <header>
             <nav class="nav-left">
                 <a href="index.html">SHOP</a>
@@ -85,6 +86,7 @@
 
                 <!-- Right Card (Links to Product Page) -->
                 <a href="product-01.html" class="card velvet-card">
+                    <img src="https://res.cloudinary.com/bqio04wg/image/upload/v1793001294/photo_2026-10-26_15-52-31-removebg-preview.png" alt="Velvet Armour Bra" class="card-img-transparent">
                     <div class="card-content bottom-aligned shadow-text">
                         <span class="the-prefix">THE</span>
                         <h2 class="script-font">Velvet Armour</h2>
@@ -186,7 +188,7 @@
             if (e.target == privModal) privModal.style.display = "none";
         }
 
-        // Cart Drawer UI (Empty state for homepage)
+        // Cart Drawer UI
         const cartDrawer = document.getElementById('cart-drawer');
         const cartOverlay = document.getElementById('cart-overlay');
         const openCartBtn = document.getElementById('open-cart');
