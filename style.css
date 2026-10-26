@@ -54,7 +54,6 @@ header {
 .nav-left { display: flex; gap: 2.2rem; font-size: 0.75rem; letter-spacing: 2px; font-weight: 400; }
 .nav-right { display: flex; gap: 2rem; font-size: 1.1rem; align-items: center; }
 
-/* Constrained to prevent layout blowing out */
 .logo-container {
     position: absolute; left: 50%; transform: translateX(-50%);
     display: flex; justify-content: center; align-items: center;
@@ -96,12 +95,11 @@ header {
 .relentless-card { background-color: #0b0304; }
 .card-content.centered { margin: auto; text-align: center; display: flex; flex-direction: column; align-items: center; padding: 1rem; }
 
-/* Updated Velvet Armour Card for Homepage */
-.velvet-card { background: radial-gradient(circle at center, #260a10 0%, #080203 100%); position: relative; }
-.card-img-transparent {
-    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -60%);
-    width: 85%; height: auto; filter: drop-shadow(0 15px 20px rgba(0,0,0,0.7));
-    z-index: 1; pointer-events: none;
+/* Restored Velvet Armour Card for Homepage (Full Image) */
+.velvet-card {
+    background-image: url('https://res.cloudinary.com/bqio04wg/image/upload/v1792998861/photo_2026-10-26_15-13-56.jpg');
+    background-size: 155%; 
+    background-position: center 68%; 
 }
 .card-content.bottom-aligned { margin-top: auto; text-align: center; padding: 0 1rem 3rem; z-index: 2; display: flex; flex-direction: column; align-items: center; width: 100%; position: relative; }
 
@@ -254,7 +252,7 @@ footer { width: 100%; background-color: #050505; border-top: 1px solid #1a1a1a; 
     }
     .logo-container img { height: 170px; margin: -45px auto; }
     
-    /* Fixed Mobile Background Visibility (Replaces Multiply with an opaque Lightened layer) */
+    /* Fixed Mobile Background Visibility */
     .lace-edge { 
         width: 190px; 
         background-size: 380px auto; 
@@ -265,11 +263,8 @@ footer { width: 100%; background-color: #050505; border-top: 1px solid #1a1a1a; 
 
     /* Product Page UI Stacking -> Side-By-Side Mobile Fix */
     .product-section {
-        grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); /* Image on left, details on right */
-        gap: 1rem; 
-        margin-top: 1rem; 
-        margin-bottom: 4rem; 
-        padding: 0 0.5rem;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); 
+        gap: 1rem; margin-top: 1rem; margin-bottom: 4rem; padding: 0 0.5rem;
         align-items: flex-start;
     }
     
@@ -298,8 +293,7 @@ footer { width: 100%; background-color: #050505; border-top: 1px solid #1a1a1a; 
     /* Homepage Cards */
     .collections-grid { grid-template-columns: 1fr 1fr; gap: 0.6rem; }
     .card { aspect-ratio: 3 / 4.3; }
-
-    .card-img-transparent { width: 95%; }
+    .velvet-card { background-size: 165%; background-position: center 65%; }
 
     .relentless-card h2 { font-size: clamp(1rem, 4.2vw, 1.35rem); letter-spacing: 1.5px; }
     .script-font { font-size: clamp(1.4rem, 6vw, 2.1rem); white-space: nowrap; margin-bottom: 0.1rem; }
