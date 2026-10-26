@@ -6,6 +6,7 @@
     <title>Mental Monster | Seamless Triangle Sports Bra</title>
     <link rel="stylesheet" href="style.css">
     
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@400;600&family=Montserrat:wght@300;400;500&family=Cormorant+Garamond:ital,wght@1,400&display=swap" rel="stylesheet">
@@ -67,7 +68,6 @@
                     
                     <p class="price">$35.00 SGD <span class="delivery-fee">+ $5 Delivery</span></p>
                     
-                    <!-- Replaced description with WIP -->
                     <p class="description">WIP</p>
                     
                     <div class="variant-selector">
@@ -155,6 +155,28 @@
     </div>
 
     <script>
+        // Modal Logic
+        const tosModal = document.getElementById("tos-modal");
+        const privModal = document.getElementById("privacy-modal");
+        const closeBtns = document.querySelectorAll(".close-btn");
+
+        if(document.getElementById("open-tos")) {
+            document.getElementById("open-tos").onclick = (e) => { e.preventDefault(); tosModal.style.display = "flex"; }
+        }
+        if(document.getElementById("open-privacy")) {
+            document.getElementById("open-privacy").onclick = (e) => { e.preventDefault(); privModal.style.display = "flex"; }
+        }
+        closeBtns.forEach(btn => {
+            btn.onclick = () => {
+                tosModal.style.display = "none";
+                privModal.style.display = "none";
+            }
+        });
+        window.onclick = (e) => {
+            if (e.target == tosModal) tosModal.style.display = "none";
+            if (e.target == privModal) privModal.style.display = "none";
+        }
+
         // Interactive Selection Logic
         let selectedSize = null;
         let selectedColor = null;
@@ -187,54 +209,56 @@
         const cartBadge = document.getElementById('cart-badge');
         let errorTimeout;
 
-        addToBagBtn.addEventListener('click', () => {
-            // Validation
-            if (!selectedSize || !selectedColor) {
-                let msg = 'Please select a size and colour.';
-                if (!selectedSize && selectedColor) msg = 'Please select a size.';
-                if (selectedSize && !selectedColor) msg = 'Please select a colour.';
+        if(addToBagBtn) {
+            addToBagBtn.addEventListener('click', () => {
+                // Validation
+                if (!selectedSize || !selectedColor) {
+                    let msg = 'Please select a size and colour.';
+                    if (!selectedSize && selectedColor) msg = 'Please select a size.';
+                    if (selectedSize && !selectedColor) msg = 'Please select a colour.';
 
-                errorMsg.textContent = msg;
-                errorMsg.classList.add('show');
+                    errorMsg.textContent = msg;
+                    errorMsg.classList.add('show');
+                    
+                    // Clear previous timeout so it stays exactly 4s from the last click
+                    clearTimeout(errorTimeout);
+                    errorTimeout = setTimeout(() => {
+                        errorMsg.classList.remove('show');
+                    }, 4000);
+                    return;
+                }
+
+                // Success: Remove Error
+                errorMsg.classList.remove('show');
+
+                // Add to Cart Array
+                cart.push({
+                    name: 'Seamless Triangle Sports Bra',
+                    price: '$35.00 SGD',
+                    size: selectedSize,
+                    color: selectedColor,
+                    img: 'https://res.cloudinary.com/bqio04wg/image/upload/v1793001294/photo_2026-10-26_15-52-31-removebg-preview.png'
+                });
+
+                // Update Badge
+                cartBadge.textContent = '+' + cart.length;
+                cartBadge.classList.add('active');
+
+                // Button Feedback
+                const originalText = addToBagBtn.textContent;
+                addToBagBtn.textContent = 'ADDED TO BAG!';
+                addToBagBtn.style.backgroundColor = 'var(--gold-accent)';
+                addToBagBtn.style.color = 'var(--bg-dark)';
                 
-                // Clear previous timeout so it stays exactly 4s from the last click
-                clearTimeout(errorTimeout);
-                errorTimeout = setTimeout(() => {
-                    errorMsg.classList.remove('show');
-                }, 4000);
-                return;
-            }
+                setTimeout(() => {
+                    addToBagBtn.textContent = originalText;
+                    addToBagBtn.style.backgroundColor = '';
+                    addToBagBtn.style.color = '';
+                }, 1500);
 
-            // Success: Remove Error
-            errorMsg.classList.remove('show');
-
-            // Add to Cart Array
-            cart.push({
-                name: 'Seamless Triangle Sports Bra',
-                price: '$35.00 SGD',
-                size: selectedSize,
-                color: selectedColor,
-                img: 'https://res.cloudinary.com/bqio04wg/image/upload/v1793001294/photo_2026-10-26_15-52-31-removebg-preview.png'
+                renderCart();
             });
-
-            // Update Badge
-            cartBadge.textContent = '+' + cart.length;
-            cartBadge.classList.add('active');
-
-            // Button Feedback
-            const originalText = addToBagBtn.textContent;
-            addToBagBtn.textContent = 'ADDED TO BAG!';
-            addToBagBtn.style.backgroundColor = 'var(--gold-accent)';
-            addToBagBtn.style.color = 'var(--bg-dark)';
-            
-            setTimeout(() => {
-                addToBagBtn.textContent = originalText;
-                addToBagBtn.style.backgroundColor = '';
-                addToBagBtn.style.color = '';
-            }, 1500);
-
-            renderCart();
-        });
+        }
 
         // Cart Drawer Logic
         const cartDrawer = document.getElementById('cart-drawer');
@@ -248,12 +272,14 @@
             cartOverlay.classList.toggle('show');
         }
 
-        openCartBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            toggleCart();
-        });
-        closeCartBtn.addEventListener('click', toggleCart);
-        cartOverlay.addEventListener('click', toggleCart);
+        if(openCartBtn) {
+            openCartBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                toggleCart();
+            });
+        }
+        if(closeCartBtn) closeCartBtn.addEventListener('click', toggleCart);
+        if(cartOverlay) cartOverlay.addEventListener('click', toggleCart);
 
         function renderCart() {
             if (cart.length === 0) {
