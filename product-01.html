@@ -6,7 +6,6 @@
     <title>Mental Monster | Duality Sports Bra</title>
     <link rel="stylesheet" href="style.css">
     
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -47,12 +46,12 @@
         </header>
 
         <main>
-            <!-- Product Layout -->
             <section class="product-section">
-                <!-- Product Gallery -->
+                <!-- Product Gallery (Added WIP Overlay) -->
                 <div class="product-gallery">
                     <div class="listing-image-container">
                         <img src="https://res.cloudinary.com/bqio04wg/image/upload/v1793001294/photo_2026-10-26_15-52-31-removebg-preview.png" alt="Duality Sports Bra" class="transparent-product-img" id="main-product-image">
+                        <div id="wip-overlay" class="wip-overlay">WIP</div>
                     </div>
                 </div>
                 
@@ -60,7 +59,6 @@
                 <div class="product-details">
                     <div class="breadcrumb"><span>VELVET ARMOUR COLLECTION</span></div>
                     
-                    <!-- Simplified Clean Fonts -->
                     <h1 class="product-title-clean">Duality</h1>
                     <h2 class="product-subtitle-clean">SPORTS BRA</h2>
                     
@@ -77,31 +75,15 @@
                         </div>
                     </div>
 
-                    <!-- Circular Color Selector with Labels -->
+                    <!-- Dynamic Color Selector (No overlapping text) -->
                     <div class="variant-selector">
-                        <p class="variant-label">COLOUR</p>
+                        <p class="variant-label">COLOUR: <span id="color-label-display" style="color: var(--text-light); font-weight: 500;">COCOA CREME</span></p>
                         <div class="colors-container" id="color-options">
-                            <div class="color-wrapper">
-                                <div class="color-swatch round" style="background-color: #872B2D;" data-name="Dark Cherry" data-image="https://res.cloudinary.com/bqio04wg/image/upload/v1793040257/photo_2026-10-27_02-42-42-removebg-preview.png"></div>
-                                <span class="color-label">DARK CHERRY</span>
-                            </div>
-                            <div class="color-wrapper">
-                                <div class="color-swatch round" style="background-color: #5A5444;" data-name="Olive Veil" data-image="https://res.cloudinary.com/bqio04wg/image/upload/v1793001294/photo_2026-10-26_15-52-31-removebg-preview.png"></div>
-                                <span class="color-label">OLIVE VEIL</span>
-                            </div>
-                            <div class="color-wrapper">
-                                <div class="color-swatch round" style="background-color: #C88E88;" data-name="Rosewood" data-image="https://res.cloudinary.com/bqio04wg/image/upload/v1793040256/photo_2026-10-27_02-42-37-removebg-preview.png"></div>
-                                <span class="color-label">ROSEWOOD</span>
-                            </div>
-                            <div class="color-wrapper">
-                                <div class="color-swatch round" style="background-color: #A9C4D7;" data-name="Midnight Mist" data-image="https://res.cloudinary.com/bqio04wg/image/upload/v1793040257/photo_2026-10-27_02-42-44-removebg-preview.png"></div>
-                                <span class="color-label">MIDNIGHT MIST</span>
-                            </div>
-                            <div class="color-wrapper">
-                                <!-- Cocoa Creme set as visually active by default to match main image -->
-                                <div class="color-swatch round active" style="background-color: #FEECC5;" data-name="Cocoa Creme" data-image="https://res.cloudinary.com/bqio04wg/image/upload/v1793001294/photo_2026-10-26_15-52-31-removebg-preview.png"></div>
-                                <span class="color-label">COCOA CREME</span>
-                            </div>
+                            <div class="color-swatch round" style="background-color: #872B2D;" data-name="Dark Cherry" data-image="https://res.cloudinary.com/bqio04wg/image/upload/v1793040257/photo_2026-10-27_02-42-42-removebg-preview.png"></div>
+                            <div class="color-swatch round" style="background-color: #5A5444;" data-name="Olive Veil" data-image="WIP"></div>
+                            <div class="color-swatch round" style="background-color: #C88E88;" data-name="Rosewood" data-image="https://res.cloudinary.com/bqio04wg/image/upload/v1793040256/photo_2026-10-27_02-42-37-removebg-preview.png"></div>
+                            <div class="color-swatch round" style="background-color: #A9C4D7;" data-name="Midnight Mist" data-image="https://res.cloudinary.com/bqio04wg/image/upload/v1793040257/photo_2026-10-27_02-42-44-removebg-preview.png"></div>
+                            <div class="color-swatch round active" style="background-color: #FEECC5;" data-name="Cocoa Creme" data-image="https://res.cloudinary.com/bqio04wg/image/upload/v1793001294/photo_2026-10-26_15-52-31-removebg-preview.png"></div>
                         </div>
                     </div>
 
@@ -112,10 +94,9 @@
                         <button id="qty-plus"><i class="fa-solid fa-plus"></i></button>
                     </div>
                     
-                    <!-- Error Message Container -->
+                    <!-- Error Message -->
                     <div id="selection-error" class="error-msg"></div>
                     
-                    <!-- Updated Button Style -->
                     <button class="btn-add-bag" id="add-to-bag-btn">
                         <span>ADD TO BAG</span>
                         <i class="fa-solid fa-arrow-right"></i>
@@ -129,22 +110,17 @@
                 <div class="footer-left">
                     <p>&copy; 2026 mentalmonster. All rights reserved.</p>
                     <p>mentalmonster Pte. Ltd.</p>
-                    <br>
-                    <p class="legal-links">
-                        <a href="#">Terms of Service</a> | <a href="#">Privacy Policy</a>
-                    </p>
                 </div>
                 <div class="footer-right">
                     <h4 class="connect-heading">Connect with us</h4>
-                    <p>email: <a href="mailto:inquiries@mentalmonster.com">inquiries@mentalmonster.com</a></p>
+                    <p>email: inquiries@mentalmonster.com</p>
                     <p>number: +65 8686 5419</p>
-                    <p>socials: <a href="https://www.tiktok.com/@mentalmonster.sg" target="_blank">tiktok</a> | <a href="https://www.instagram.com/mentalmonster.sg/?hl=en" target="_blank">instagram</a></p>
                 </div>
             </div>
         </footer>
     </div>
 
-    <!-- The Cream Cart Drawer -->
+    <!-- Cream Cart Drawer -->
     <div class="cart-overlay" id="cart-overlay"></div>
     <div class="cart-drawer" id="cart-drawer">
         <div class="cart-header">
@@ -155,20 +131,25 @@
             <p class="empty-cart-msg">Your bag is empty.</p>
         </div>
         <div class="cart-footer">
+            <div class="cart-total-row" id="cart-total-row" style="display:none; display: flex; justify-content: space-between; margin-bottom: 1rem; font-weight: 600; font-size: 1.2rem;">
+                <span>SUBTOTAL:</span>
+                <span id="cart-total-price">$0.00 SGD</span>
+            </div>
             <button class="checkout-btn">CHECKOUT</button>
         </div>
     </div>
 
     <script>
-        // Interactive Selection Logic
         let selectedSize = null;
-        let selectedColor = 'Cocoa Creme'; // Default matches image
+        let selectedColor = 'Cocoa Creme'; 
         let currentQty = 1;
         let cart = [];
 
         const sizeBtns = document.querySelectorAll('.size-btn');
         const colorSwatches = document.querySelectorAll('.color-swatch');
         const mainImage = document.getElementById('main-product-image');
+        const wipOverlay = document.getElementById('wip-overlay');
+        const colorLabelDisplay = document.getElementById('color-label-display');
         const qtyMinus = document.getElementById('qty-minus');
         const qtyPlus = document.getElementById('qty-plus');
         const qtyVal = document.getElementById('qty-val');
@@ -182,24 +163,33 @@
             });
         });
 
-        // Select Color and Swap Image
+        // Select Color, Update Dynamic Text, Swap Image & Handle WIP
         colorSwatches.forEach(swatch => {
             swatch.addEventListener('click', () => {
                 colorSwatches.forEach(s => s.classList.remove('active'));
                 swatch.classList.add('active');
                 selectedColor = swatch.getAttribute('data-name');
                 
-                // Swap the image dynamically
+                // Update text label dynamically so it doesn't overlap
+                colorLabelDisplay.textContent = selectedColor.toUpperCase();
+                
                 const newImgSrc = swatch.getAttribute('data-image');
-                mainImage.style.opacity = 0; // Quick fade effect
+                
+                mainImage.style.opacity = 0; 
                 setTimeout(() => {
-                    mainImage.src = newImgSrc;
+                    if (newImgSrc === 'WIP') {
+                        mainImage.src = '';
+                        wipOverlay.style.display = 'flex';
+                    } else {
+                        mainImage.src = newImgSrc;
+                        wipOverlay.style.display = 'none';
+                    }
                     mainImage.style.opacity = 1;
                 }, 200);
             });
         });
 
-        // Quantity Logic
+        // Quantity Math
         qtyMinus.addEventListener('click', () => {
             if (currentQty > 1) {
                 currentQty--;
@@ -217,86 +207,93 @@
         const cartBadge = document.getElementById('cart-badge');
         let errorTimeout;
 
-        if(addToBagBtn) {
-            addToBagBtn.addEventListener('click', () => {
-                // Validation
-                if (!selectedSize || !selectedColor) {
-                    let msg = 'Please select a size and colour.';
-                    if (!selectedSize && selectedColor) msg = 'Please select a size.';
-                    if (selectedSize && !selectedColor) msg = 'Please select a colour.';
+        addToBagBtn.addEventListener('click', () => {
+            if (!selectedSize || !selectedColor) {
+                let msg = 'Please select a size and colour.';
+                if (!selectedSize && selectedColor) msg = 'Please select a size.';
+                if (selectedSize && !selectedColor) msg = 'Please select a colour.';
 
-                    errorMsg.textContent = msg;
-                    errorMsg.classList.add('show');
-                    
-                    clearTimeout(errorTimeout);
-                    errorTimeout = setTimeout(() => {
-                        errorMsg.classList.remove('show');
-                    }, 4000);
-                    return;
-                }
+                errorMsg.textContent = msg;
+                errorMsg.classList.add('show');
+                
+                clearTimeout(errorTimeout);
+                errorTimeout = setTimeout(() => {
+                    errorMsg.classList.remove('show');
+                }, 4000);
+                return;
+            }
 
-                errorMsg.classList.remove('show');
+            errorMsg.classList.remove('show');
 
-                // Get current active image for the cart
-                const activeImageSrc = document.querySelector('.color-swatch.active').getAttribute('data-image');
+            const activeSwatchSrc = document.querySelector('.color-swatch.active').getAttribute('data-image');
+            const cartImgSrc = activeSwatchSrc === 'WIP' ? 'https://res.cloudinary.com/bqio04wg/image/upload/v1792925301/logo_website_nbg.png' : activeSwatchSrc;
 
+            // Combine identical items if they share Name, Size, and Color
+            const existingItemIndex = cart.findIndex(item => item.name === 'Duality Sports Bra' && item.size === selectedSize && item.color === selectedColor);
+            
+            if (existingItemIndex > -1) {
+                cart[existingItemIndex].qty += currentQty;
+            } else {
                 cart.push({
                     name: 'Duality Sports Bra',
-                    price: '$40.00 SGD',
+                    price: 40.00,
                     size: selectedSize,
                     color: selectedColor,
                     qty: currentQty,
-                    img: activeImageSrc
+                    img: cartImgSrc
                 });
+            }
 
-                // Update Badge
-                cartBadge.textContent = '+' + cart.length;
-                cartBadge.classList.add('active');
+            // Sum all quantities
+            const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
+            cartBadge.textContent = '+' + totalItems;
+            cartBadge.classList.add('active');
 
-                // Button Feedback
-                const originalContent = addToBagBtn.innerHTML;
-                addToBagBtn.innerHTML = '<span>ADDED!</span><i class="fa-solid fa-check"></i>';
-                addToBagBtn.style.backgroundColor = 'var(--gold-accent)';
-                addToBagBtn.style.color = 'var(--bg-dark)';
-                
-                setTimeout(() => {
-                    addToBagBtn.innerHTML = originalContent;
-                    addToBagBtn.style.backgroundColor = '';
-                    addToBagBtn.style.color = '';
-                }, 1500);
+            // Button Feedback
+            const originalContent = addToBagBtn.innerHTML;
+            addToBagBtn.innerHTML = '<span>ADDED!</span><i class="fa-solid fa-check"></i>';
+            addToBagBtn.style.backgroundColor = 'var(--gold-accent)';
+            addToBagBtn.style.color = 'var(--bg-dark)';
+            
+            setTimeout(() => {
+                addToBagBtn.innerHTML = originalContent;
+                addToBagBtn.style.backgroundColor = '';
+                addToBagBtn.style.color = '';
+            }, 1500);
 
-                renderCart();
-            });
-        }
+            renderCart();
+        });
 
-        // Cart Drawer Logic
+        // Cart Drawer Control
         const cartDrawer = document.getElementById('cart-drawer');
         const cartOverlay = document.getElementById('cart-overlay');
         const openCartBtn = document.getElementById('open-cart');
         const closeCartBtn = document.getElementById('close-cart');
         const cartItemsContainer = document.getElementById('cart-items-container');
+        const cartTotalRow = document.getElementById('cart-total-row');
+        const cartTotalPrice = document.getElementById('cart-total-price');
 
         function toggleCart() {
             cartDrawer.classList.toggle('open');
             cartOverlay.classList.toggle('show');
         }
 
-        if(openCartBtn) {
-            openCartBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                toggleCart();
-            });
-        }
-        if(closeCartBtn) closeCartBtn.addEventListener('click', toggleCart);
-        if(cartOverlay) cartOverlay.addEventListener('click', toggleCart);
+        openCartBtn.addEventListener('click', (e) => { e.preventDefault(); toggleCart(); });
+        closeCartBtn.addEventListener('click', toggleCart);
+        cartOverlay.addEventListener('click', toggleCart);
 
         function renderCart() {
             if (cart.length === 0) {
                 cartItemsContainer.innerHTML = '<p class="empty-cart-msg">Your bag is empty.</p>';
+                cartTotalRow.style.display = 'none';
                 return;
             }
             
-            cartItemsContainer.innerHTML = cart.map(item => `
+            let totalSum = 0;
+            
+            cartItemsContainer.innerHTML = cart.map(item => {
+                totalSum += (item.price * item.qty);
+                return `
                 <div class="cart-item">
                     <div class="cart-item-img">
                         <img src="${item.img}" alt="${item.name}">
@@ -305,10 +302,13 @@
                         <h4>${item.name}</h4>
                         <p class="cart-variant">Size: <strong>${item.size}</strong> | Qty: <strong>${item.qty}</strong></p>
                         <p class="cart-variant">Colour: <strong>${item.color}</strong></p>
-                        <p class="cart-price">${item.price}</p>
+                        <p class="cart-price">$${(item.price * item.qty).toFixed(2)} SGD</p>
                     </div>
                 </div>
-            `).join('');
+            `}).join('');
+
+            cartTotalRow.style.display = 'flex';
+            cartTotalPrice.textContent = '$' + totalSum.toFixed(2) + ' SGD';
         }
     </script>
 </body>
