@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mental Monster | Seamless Triangle Sports Bra</title>
+    <title>Mental Monster | Duality Sports Bra</title>
     <link rel="stylesheet" href="style.css">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@400;600&family=Montserrat:wght@300;400;500&family=Cormorant+Garamond:ital,wght@1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -52,24 +52,21 @@
                 <!-- Product Gallery -->
                 <div class="product-gallery">
                     <div class="listing-image-container">
-                        <img src="https://res.cloudinary.com/bqio04wg/image/upload/v1793001294/photo_2026-10-26_15-52-31-removebg-preview.png" alt="Seamless Triangle Sports Bra" class="transparent-product-img">
+                        <img src="https://res.cloudinary.com/bqio04wg/image/upload/v1793001294/photo_2026-10-26_15-52-31-removebg-preview.png" alt="Duality Sports Bra" class="transparent-product-img" id="main-product-image">
                     </div>
                 </div>
                 
                 <!-- Product Info -->
                 <div class="product-details">
-                    <div class="breadcrumb"><a href="index.html">HOME</a> / <span>VELVET ARMOUR COLLECTION</span></div>
+                    <div class="breadcrumb"><span>VELVET ARMOUR COLLECTION</span></div>
                     
-                    <h1 class="elegant-serif">Seamless Triangle<br>Sports Bra</h1>
+                    <!-- Simplified Clean Fonts -->
+                    <h1 class="product-title-clean">Duality</h1>
+                    <h2 class="product-subtitle-clean">SPORTS BRA</h2>
                     
-                    <div class="diamond-divider-container small left-aligned">
-                        <div class="line-left"></div><div class="diamond">♦</div><div class="line-right"></div>
-                    </div>
+                    <p class="price-clean">$40.00 SGD</p>
                     
-                    <p class="price">$35.00 SGD <span class="delivery-fee">+ $5 Delivery</span></p>
-                    
-                    <p class="description">WIP</p>
-                    
+                    <!-- Size Selector -->
                     <div class="variant-selector">
                         <p class="variant-label">SIZE</p>
                         <div class="sizes" id="size-options">
@@ -80,23 +77,49 @@
                         </div>
                     </div>
 
+                    <!-- Circular Color Selector with Labels -->
                     <div class="variant-selector">
-                        <p class="variant-label">AVAILABLE COLOURS</p>
-                        <div class="colors" id="color-options">
-                            <div class="color-swatch" style="background-color: #000080;" title="Deep Navy Blue"></div>
-                            <div class="color-swatch" style="background-color: #C71585;" title="Deep Rose Red"></div>
-                            <div class="color-swatch" style="background-color: #654321;" title="Deep Brown"></div>
-                            <div class="color-swatch" style="background-color: #008000;" title="Green"></div>
-                            <div class="color-swatch" style="background-color: #A52A2A;" title="Brown"></div>
-                            <div class="color-swatch" style="background-color: #FFC0CB;" title="Pink"></div>
-                            <div class="color-swatch" style="background-color: #008B8B;" title="Enamel Blue"></div>
+                        <p class="variant-label">COLOUR</p>
+                        <div class="colors-container" id="color-options">
+                            <div class="color-wrapper">
+                                <div class="color-swatch round" style="background-color: #872B2D;" data-name="Dark Cherry" data-image="https://res.cloudinary.com/bqio04wg/image/upload/v1793040257/photo_2026-10-27_02-42-42-removebg-preview.png"></div>
+                                <span class="color-label">DARK CHERRY</span>
+                            </div>
+                            <div class="color-wrapper">
+                                <div class="color-swatch round" style="background-color: #5A5444;" data-name="Olive Veil" data-image="https://res.cloudinary.com/bqio04wg/image/upload/v1793001294/photo_2026-10-26_15-52-31-removebg-preview.png"></div>
+                                <span class="color-label">OLIVE VEIL</span>
+                            </div>
+                            <div class="color-wrapper">
+                                <div class="color-swatch round" style="background-color: #C88E88;" data-name="Rosewood" data-image="https://res.cloudinary.com/bqio04wg/image/upload/v1793040256/photo_2026-10-27_02-42-37-removebg-preview.png"></div>
+                                <span class="color-label">ROSEWOOD</span>
+                            </div>
+                            <div class="color-wrapper">
+                                <div class="color-swatch round" style="background-color: #A9C4D7;" data-name="Midnight Mist" data-image="https://res.cloudinary.com/bqio04wg/image/upload/v1793040257/photo_2026-10-27_02-42-44-removebg-preview.png"></div>
+                                <span class="color-label">MIDNIGHT MIST</span>
+                            </div>
+                            <div class="color-wrapper">
+                                <!-- Cocoa Creme set as visually active by default to match main image -->
+                                <div class="color-swatch round active" style="background-color: #FEECC5;" data-name="Cocoa Creme" data-image="https://res.cloudinary.com/bqio04wg/image/upload/v1793001294/photo_2026-10-26_15-52-31-removebg-preview.png"></div>
+                                <span class="color-label">COCOA CREME</span>
+                            </div>
                         </div>
+                    </div>
+
+                    <!-- Quantity Selector -->
+                    <div class="qty-selector">
+                        <button id="qty-minus"><i class="fa-solid fa-minus"></i></button>
+                        <span id="qty-val">1</span>
+                        <button id="qty-plus"><i class="fa-solid fa-plus"></i></button>
                     </div>
                     
                     <!-- Error Message Container -->
                     <div id="selection-error" class="error-msg"></div>
                     
-                    <button class="add-to-bag" id="add-to-bag-btn">ADD TO BAG</button>
+                    <!-- Updated Button Style -->
+                    <button class="btn-add-bag" id="add-to-bag-btn">
+                        <span>ADD TO BAG</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
                 </div>
             </section>
         </main>
@@ -136,54 +159,19 @@
         </div>
     </div>
 
-    <!-- Modals for Legal Text -->
-    <div id="tos-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn">&times;</span>
-            <h2>Terms of Service</h2>
-            <p><strong>Effective Date: October 19, 2026</strong></p>
-            <p>Welcome to mentalmonster. By accessing our website and purchasing our fitness apparel, you agree to comply with and be bound by the following terms...</p>
-        </div>
-    </div>
-    <div id="privacy-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn">&times;</span>
-            <h2>Privacy Policy</h2>
-            <p><strong>Effective Date: October 19, 2026</strong></p>
-            <p>At mentalmonster, we respect your data privacy...</p>
-        </div>
-    </div>
-
     <script>
-        // Modal Logic
-        const tosModal = document.getElementById("tos-modal");
-        const privModal = document.getElementById("privacy-modal");
-        const closeBtns = document.querySelectorAll(".close-btn");
-
-        if(document.getElementById("open-tos")) {
-            document.getElementById("open-tos").onclick = (e) => { e.preventDefault(); tosModal.style.display = "flex"; }
-        }
-        if(document.getElementById("open-privacy")) {
-            document.getElementById("open-privacy").onclick = (e) => { e.preventDefault(); privModal.style.display = "flex"; }
-        }
-        closeBtns.forEach(btn => {
-            btn.onclick = () => {
-                tosModal.style.display = "none";
-                privModal.style.display = "none";
-            }
-        });
-        window.onclick = (e) => {
-            if (e.target == tosModal) tosModal.style.display = "none";
-            if (e.target == privModal) privModal.style.display = "none";
-        }
-
         // Interactive Selection Logic
         let selectedSize = null;
-        let selectedColor = null;
+        let selectedColor = 'Cocoa Creme'; // Default matches image
+        let currentQty = 1;
         let cart = [];
 
         const sizeBtns = document.querySelectorAll('.size-btn');
         const colorSwatches = document.querySelectorAll('.color-swatch');
+        const mainImage = document.getElementById('main-product-image');
+        const qtyMinus = document.getElementById('qty-minus');
+        const qtyPlus = document.getElementById('qty-plus');
+        const qtyVal = document.getElementById('qty-val');
         
         // Select Size
         sizeBtns.forEach(btn => {
@@ -194,13 +182,33 @@
             });
         });
 
-        // Select Color
+        // Select Color and Swap Image
         colorSwatches.forEach(swatch => {
             swatch.addEventListener('click', () => {
-                colorSwatches.forEach(s => s.classList.remove('selected'));
-                swatch.classList.add('selected');
-                selectedColor = swatch.getAttribute('title');
+                colorSwatches.forEach(s => s.classList.remove('active'));
+                swatch.classList.add('active');
+                selectedColor = swatch.getAttribute('data-name');
+                
+                // Swap the image dynamically
+                const newImgSrc = swatch.getAttribute('data-image');
+                mainImage.style.opacity = 0; // Quick fade effect
+                setTimeout(() => {
+                    mainImage.src = newImgSrc;
+                    mainImage.style.opacity = 1;
+                }, 200);
             });
+        });
+
+        // Quantity Logic
+        qtyMinus.addEventListener('click', () => {
+            if (currentQty > 1) {
+                currentQty--;
+                qtyVal.textContent = currentQty;
+            }
+        });
+        qtyPlus.addEventListener('click', () => {
+            currentQty++;
+            qtyVal.textContent = currentQty;
         });
 
         // Add to Bag Logic
@@ -220,7 +228,6 @@
                     errorMsg.textContent = msg;
                     errorMsg.classList.add('show');
                     
-                    // Clear previous timeout so it stays exactly 4s from the last click
                     clearTimeout(errorTimeout);
                     errorTimeout = setTimeout(() => {
                         errorMsg.classList.remove('show');
@@ -228,16 +235,18 @@
                     return;
                 }
 
-                // Success: Remove Error
                 errorMsg.classList.remove('show');
 
-                // Add to Cart Array
+                // Get current active image for the cart
+                const activeImageSrc = document.querySelector('.color-swatch.active').getAttribute('data-image');
+
                 cart.push({
-                    name: 'Seamless Triangle Sports Bra',
-                    price: '$35.00 SGD',
+                    name: 'Duality Sports Bra',
+                    price: '$40.00 SGD',
                     size: selectedSize,
                     color: selectedColor,
-                    img: 'https://res.cloudinary.com/bqio04wg/image/upload/v1793001294/photo_2026-10-26_15-52-31-removebg-preview.png'
+                    qty: currentQty,
+                    img: activeImageSrc
                 });
 
                 // Update Badge
@@ -245,13 +254,13 @@
                 cartBadge.classList.add('active');
 
                 // Button Feedback
-                const originalText = addToBagBtn.textContent;
-                addToBagBtn.textContent = 'ADDED TO BAG!';
+                const originalContent = addToBagBtn.innerHTML;
+                addToBagBtn.innerHTML = '<span>ADDED!</span><i class="fa-solid fa-check"></i>';
                 addToBagBtn.style.backgroundColor = 'var(--gold-accent)';
                 addToBagBtn.style.color = 'var(--bg-dark)';
                 
                 setTimeout(() => {
-                    addToBagBtn.textContent = originalText;
+                    addToBagBtn.innerHTML = originalContent;
                     addToBagBtn.style.backgroundColor = '';
                     addToBagBtn.style.color = '';
                 }, 1500);
@@ -294,7 +303,7 @@
                     </div>
                     <div class="cart-item-info">
                         <h4>${item.name}</h4>
-                        <p class="cart-variant">Size: <strong>${item.size}</strong></p>
+                        <p class="cart-variant">Size: <strong>${item.size}</strong> | Qty: <strong>${item.qty}</strong></p>
                         <p class="cart-variant">Colour: <strong>${item.color}</strong></p>
                         <p class="cart-price">${item.price}</p>
                     </div>
