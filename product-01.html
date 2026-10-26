@@ -38,9 +38,9 @@
             <nav class="nav-right">
                 <a href="#" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></a>
                 <a href="#" aria-label="Account"><i class="fa-regular fa-user"></i></a>
-                <a href="#" aria-label="Bag" class="cart-icon-wrapper">
+                <a href="#" aria-label="Bag" class="cart-icon-wrapper" id="open-cart">
                     <i class="fa-solid fa-bag-shopping"></i>
-                    <span class="cart-badge" id="cart-badge">+1</span>
+                    <span class="cart-badge" id="cart-badge">0</span>
                 </a>
             </nav>
         </header>
@@ -48,7 +48,7 @@
         <main>
             <!-- Product Layout -->
             <section class="product-section">
-                <!-- Product Gallery (Downsized borders) -->
+                <!-- Product Gallery -->
                 <div class="product-gallery">
                     <div class="listing-image-container">
                         <img src="https://res.cloudinary.com/bqio04wg/image/upload/v1793001294/photo_2026-10-26_15-52-31-removebg-preview.png" alt="Seamless Triangle Sports Bra" class="transparent-product-img">
@@ -57,7 +57,6 @@
                 
                 <!-- Product Info -->
                 <div class="product-details">
-                    <!-- Renamed Breadcrumb -->
                     <div class="breadcrumb"><a href="index.html">HOME</a> / <span>VELVET ARMOUR COLLECTION</span></div>
                     
                     <h1 class="elegant-serif">Seamless Triangle<br>Sports Bra</h1>
@@ -68,13 +67,12 @@
                     
                     <p class="price">$35.00 SGD <span class="delivery-fee">+ $5 Delivery</span></p>
                     
-                    <p class="description">
-                        Engineered for the relentless. Sticking through the processes necessary to meet said goals despite the hurdles that await. High-compression, sweat-wicking performance apparel designed to move with you through the darkness.
-                    </p>
+                    <!-- Replaced description with WIP -->
+                    <p class="description">WIP</p>
                     
                     <div class="variant-selector">
                         <p class="variant-label">SIZE</p>
-                        <div class="sizes">
+                        <div class="sizes" id="size-options">
                             <button class="size-btn">S</button>
                             <button class="size-btn">M</button>
                             <button class="size-btn">L</button>
@@ -84,7 +82,7 @@
 
                     <div class="variant-selector">
                         <p class="variant-label">AVAILABLE COLOURS</p>
-                        <div class="colors">
+                        <div class="colors" id="color-options">
                             <div class="color-swatch" style="background-color: #000080;" title="Deep Navy Blue"></div>
                             <div class="color-swatch" style="background-color: #C71585;" title="Deep Rose Red"></div>
                             <div class="color-swatch" style="background-color: #654321;" title="Deep Brown"></div>
@@ -95,7 +93,10 @@
                         </div>
                     </div>
                     
-                    <button class="add-to-bag">ADD TO BAG</button>
+                    <!-- Error Message Container -->
+                    <div id="selection-error" class="error-msg"></div>
+                    
+                    <button class="add-to-bag" id="add-to-bag-btn">ADD TO BAG</button>
                 </div>
             </section>
         </main>
@@ -107,8 +108,7 @@
                     <p>mentalmonster Pte. Ltd.</p>
                     <br>
                     <p class="legal-links">
-                        <a href="#" id="open-tos">Terms of Service</a> | 
-                        <a href="#" id="open-privacy">Privacy Policy</a>
+                        <a href="#">Terms of Service</a> | <a href="#">Privacy Policy</a>
                     </p>
                 </div>
                 <div class="footer-right">
@@ -119,10 +119,24 @@
                 </div>
             </div>
         </footer>
-
     </div>
 
-    <!-- Modals for Legal Text (Same as index.html) -->
+    <!-- The Cream Cart Drawer -->
+    <div class="cart-overlay" id="cart-overlay"></div>
+    <div class="cart-drawer" id="cart-drawer">
+        <div class="cart-header">
+            <h2>YOUR BAG</h2>
+            <button id="close-cart">&times;</button>
+        </div>
+        <div id="cart-items-container" class="cart-items">
+            <p class="empty-cart-msg">Your bag is empty.</p>
+        </div>
+        <div class="cart-footer">
+            <button class="checkout-btn">CHECKOUT</button>
+        </div>
+    </div>
+
+    <!-- Modals for Legal Text -->
     <div id="tos-modal" class="modal">
         <div class="modal-content">
             <span class="close-btn">&times;</span>
@@ -141,40 +155,125 @@
     </div>
 
     <script>
-        // Modal Logic
-        const tosModal = document.getElementById("tos-modal");
-        const privModal = document.getElementById("privacy-modal");
-        const closeBtns = document.querySelectorAll(".close-btn");
+        // Interactive Selection Logic
+        let selectedSize = null;
+        let selectedColor = null;
+        let cart = [];
 
-        document.getElementById("open-tos").onclick = (e) => { e.preventDefault(); tosModal.style.display = "flex"; }
-        document.getElementById("open-privacy").onclick = (e) => { e.preventDefault(); privModal.style.display = "flex"; }
-        closeBtns.forEach(btn => { btn.onclick = () => { tosModal.style.display = "none"; privModal.style.display = "none"; }});
-        window.onclick = (e) => { if (e.target == tosModal) tosModal.style.display = "none"; if (e.target == privModal) privModal.style.display = "none"; }
-
-        // Dynamic Add to Bag Notification Logic
-        const addToBagBtn = document.querySelector('.add-to-bag');
-        const cartBadge = document.getElementById('cart-badge');
-        let cartCount = 0;
-
-        if (addToBagBtn && cartBadge) {
-            addToBagBtn.addEventListener('click', () => {
-                cartCount++;
-                cartBadge.textContent = '+' + cartCount;
-                cartBadge.classList.add('active'); // Triggers the CSS pop-in animation
-                
-                // Visual feedback on the button
-                const originalText = addToBagBtn.textContent;
-                addToBagBtn.textContent = 'ADDED!';
-                addToBagBtn.style.backgroundColor = 'var(--gold-accent)';
-                addToBagBtn.style.color = 'var(--bg-dark)';
-                
-                // Reset button after 1.5 seconds
-                setTimeout(() => {
-                    addToBagBtn.textContent = originalText;
-                    addToBagBtn.style.backgroundColor = '';
-                    addToBagBtn.style.color = '';
-                }, 1500);
+        const sizeBtns = document.querySelectorAll('.size-btn');
+        const colorSwatches = document.querySelectorAll('.color-swatch');
+        
+        // Select Size
+        sizeBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                sizeBtns.forEach(b => b.classList.remove('selected'));
+                btn.classList.add('selected');
+                selectedSize = btn.textContent;
             });
+        });
+
+        // Select Color
+        colorSwatches.forEach(swatch => {
+            swatch.addEventListener('click', () => {
+                colorSwatches.forEach(s => s.classList.remove('selected'));
+                swatch.classList.add('selected');
+                selectedColor = swatch.getAttribute('title');
+            });
+        });
+
+        // Add to Bag Logic
+        const addToBagBtn = document.getElementById('add-to-bag-btn');
+        const errorMsg = document.getElementById('selection-error');
+        const cartBadge = document.getElementById('cart-badge');
+        let errorTimeout;
+
+        addToBagBtn.addEventListener('click', () => {
+            // Validation
+            if (!selectedSize || !selectedColor) {
+                let msg = 'Please select a size and colour.';
+                if (!selectedSize && selectedColor) msg = 'Please select a size.';
+                if (selectedSize && !selectedColor) msg = 'Please select a colour.';
+
+                errorMsg.textContent = msg;
+                errorMsg.classList.add('show');
+                
+                // Clear previous timeout so it stays exactly 4s from the last click
+                clearTimeout(errorTimeout);
+                errorTimeout = setTimeout(() => {
+                    errorMsg.classList.remove('show');
+                }, 4000);
+                return;
+            }
+
+            // Success: Remove Error
+            errorMsg.classList.remove('show');
+
+            // Add to Cart Array
+            cart.push({
+                name: 'Seamless Triangle Sports Bra',
+                price: '$35.00 SGD',
+                size: selectedSize,
+                color: selectedColor,
+                img: 'https://res.cloudinary.com/bqio04wg/image/upload/v1793001294/photo_2026-10-26_15-52-31-removebg-preview.png'
+            });
+
+            // Update Badge
+            cartBadge.textContent = '+' + cart.length;
+            cartBadge.classList.add('active');
+
+            // Button Feedback
+            const originalText = addToBagBtn.textContent;
+            addToBagBtn.textContent = 'ADDED TO BAG!';
+            addToBagBtn.style.backgroundColor = 'var(--gold-accent)';
+            addToBagBtn.style.color = 'var(--bg-dark)';
+            
+            setTimeout(() => {
+                addToBagBtn.textContent = originalText;
+                addToBagBtn.style.backgroundColor = '';
+                addToBagBtn.style.color = '';
+            }, 1500);
+
+            renderCart();
+        });
+
+        // Cart Drawer Logic
+        const cartDrawer = document.getElementById('cart-drawer');
+        const cartOverlay = document.getElementById('cart-overlay');
+        const openCartBtn = document.getElementById('open-cart');
+        const closeCartBtn = document.getElementById('close-cart');
+        const cartItemsContainer = document.getElementById('cart-items-container');
+
+        function toggleCart() {
+            cartDrawer.classList.toggle('open');
+            cartOverlay.classList.toggle('show');
+        }
+
+        openCartBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            toggleCart();
+        });
+        closeCartBtn.addEventListener('click', toggleCart);
+        cartOverlay.addEventListener('click', toggleCart);
+
+        function renderCart() {
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '<p class="empty-cart-msg">Your bag is empty.</p>';
+                return;
+            }
+            
+            cartItemsContainer.innerHTML = cart.map(item => `
+                <div class="cart-item">
+                    <div class="cart-item-img">
+                        <img src="${item.img}" alt="${item.name}">
+                    </div>
+                    <div class="cart-item-info">
+                        <h4>${item.name}</h4>
+                        <p class="cart-variant">Size: <strong>${item.size}</strong></p>
+                        <p class="cart-variant">Colour: <strong>${item.color}</strong></p>
+                        <p class="cart-price">${item.price}</p>
+                    </div>
+                </div>
+            `).join('');
         }
     </script>
 </body>
