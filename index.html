@@ -6,19 +6,24 @@
     <title>Mental Monster | Apparel</title>
     <link rel="stylesheet" href="style.css">
     
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@400;600&family=Montserrat:wght@300;400;500&family=Cormorant+Garamond:ital,wght@1,400&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
+    <!-- Hidden SVG Filter to sharpen the background texture -->
     <svg width="0" height="0" style="position: absolute; pointer-events: none;">
         <filter id="crisp-lace">
             <feConvolveMatrix order="3" preserveAlpha="true" kernelMatrix="0 -1 0 -1 5 -1 0 -1 0"/>
         </filter>
     </svg>
 
+    <!-- Edge-Anchored Background Panels -->
     <div class="lace-frame" aria-hidden="true">
         <div class="lace-edge lace-left"></div>
         <div class="lace-edge lace-right"></div>
@@ -28,53 +33,65 @@
         
         <header>
             <nav class="nav-left">
-                <a href="#">SHOP</a>
-                <a href="#">COLLECTIONS</a>
-                <a href="#">ABOUT</a>
+                <a href="index.html">SHOP</a>
+                <a href="index.html">COLLECTIONS</a>
+                <a href="index.html">ABOUT</a>
             </nav>
             <div class="logo-container">
-                <img src="https://res.cloudinary.com/bqio04wg/image/upload/v1792925301/logo_website_nbg.png" alt="Mental Monster Logo">
+                <a href="index.html"><img src="https://res.cloudinary.com/bqio04wg/image/upload/v1792925301/logo_website_nbg.png" alt="Mental Monster Logo"></a>
             </div>
             <nav class="nav-right">
                 <a href="#" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></a>
                 <a href="#" aria-label="Account"><i class="fa-regular fa-user"></i></a>
-                <a href="#" aria-label="Bag" class="cart-icon-wrapper">
+                <a href="#" aria-label="Bag" class="cart-icon-wrapper" id="open-cart">
                     <i class="fa-solid fa-bag-shopping"></i>
-                    <span class="cart-badge" id="cart-badge-index">0</span>
+                    <span class="cart-badge" id="cart-badge">0</span>
                 </a>
             </nav>
         </header>
 
         <main>
+            <!-- Hero Quote -->
             <section class="hero-quote">
                 <div class="diamond-divider-container">
-                    <div class="line-left"></div><div class="diamond">♦</div><div class="line-right"></div>
+                    <div class="line-left"></div>
+                    <div class="diamond">♦</div>
+                    <div class="line-right"></div>
                 </div>
                 <p>Sticking through the processes necessary<br>to meet said goals despite the hurdles that awaits.</p>
                 <div class="diamond-divider-container">
-                    <div class="line-left"></div><div class="diamond">♦</div><div class="line-right"></div>
+                    <div class="line-left"></div>
+                    <div class="diamond">♦</div>
+                    <div class="line-right"></div>
                 </div>
             </section>
 
+            <!-- Cards Section -->
             <section class="collections-grid">
                 
+                <!-- Left Card (Placeholder) -->
                 <div class="card relentless-card">
                     <div class="card-content centered">
                         <span class="the-prefix">THE</span>
                         <h2>RELENTLESS</h2>
                         <div class="diamond-divider-container small">
-                            <div class="line-left"></div><div class="diamond">♦</div><div class="line-right"></div>
+                            <div class="line-left"></div>
+                            <div class="diamond">♦</div>
+                            <div class="line-right"></div>
                         </div>
                         <span class="card-subtitle">COMING SOON</span>
                     </div>
                 </div>
 
+                <!-- Right Card (Links to Product Page) -->
                 <a href="product-01.html" class="card velvet-card">
                     <div class="card-content bottom-aligned shadow-text">
                         <span class="the-prefix">THE</span>
                         <h2 class="script-font">Velvet Armour</h2>
                         <div class="diamond-divider-container small">
-                            <div class="line-left"></div><div class="diamond">♦</div><div class="line-right"></div>
+                            <div class="line-left"></div>
+                            <div class="diamond">♦</div>
+                            <div class="line-right"></div>
                         </div>
                         <span class="shop-link">SHOP COLLECTION &rarr;</span>
                     </div>
@@ -82,6 +99,7 @@
 
             </section>
 
+            <!-- Bottom Mark Image -->
             <div class="bottom-mark">
                 <div class="line"></div>
                 <div class="diamond">♦</div>
@@ -91,6 +109,7 @@
             </div>
         </main>
 
+        <!-- Footer -->
         <footer>
             <div class="footer-inner">
                 <div class="footer-left">
@@ -113,7 +132,22 @@
 
     </div>
 
-    <!-- Modals -->
+    <!-- Cream Cart Drawer -->
+    <div class="cart-overlay" id="cart-overlay"></div>
+    <div class="cart-drawer" id="cart-drawer">
+        <div class="cart-header">
+            <h2>YOUR BAG</h2>
+            <button id="close-cart">&times;</button>
+        </div>
+        <div id="cart-items-container" class="cart-items">
+            <p class="empty-cart-msg">Your bag is empty.</p>
+        </div>
+        <div class="cart-footer">
+            <button class="checkout-btn">CHECKOUT</button>
+        </div>
+    </div>
+
+    <!-- Modals for Legal Text -->
     <div id="tos-modal" class="modal">
         <div class="modal-content">
             <span class="close-btn">&times;</span>
@@ -132,13 +166,43 @@
     </div>
 
     <script>
+        // Modal Logic
         const tosModal = document.getElementById("tos-modal");
         const privModal = document.getElementById("privacy-modal");
         const closeBtns = document.querySelectorAll(".close-btn");
+
         document.getElementById("open-tos").onclick = (e) => { e.preventDefault(); tosModal.style.display = "flex"; }
         document.getElementById("open-privacy").onclick = (e) => { e.preventDefault(); privModal.style.display = "flex"; }
-        closeBtns.forEach(btn => { btn.onclick = () => { tosModal.style.display = "none"; privModal.style.display = "none"; }});
-        window.onclick = (e) => { if (e.target == tosModal) tosModal.style.display = "none"; if (e.target == privModal) privModal.style.display = "none"; }
+        
+        closeBtns.forEach(btn => {
+            btn.onclick = () => {
+                tosModal.style.display = "none";
+                privModal.style.display = "none";
+            }
+        });
+
+        window.onclick = (e) => {
+            if (e.target == tosModal) tosModal.style.display = "none";
+            if (e.target == privModal) privModal.style.display = "none";
+        }
+
+        // Cart Drawer UI (Empty state for homepage)
+        const cartDrawer = document.getElementById('cart-drawer');
+        const cartOverlay = document.getElementById('cart-overlay');
+        const openCartBtn = document.getElementById('open-cart');
+        const closeCartBtn = document.getElementById('close-cart');
+
+        function toggleCart() {
+            cartDrawer.classList.toggle('open');
+            cartOverlay.classList.toggle('show');
+        }
+
+        openCartBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            toggleCart();
+        });
+        closeCartBtn.addEventListener('click', toggleCart);
+        cartOverlay.addEventListener('click', toggleCart);
     </script>
 </body>
 </html>
