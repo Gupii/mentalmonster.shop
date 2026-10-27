@@ -9,7 +9,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Montserrat:wght@300;400;500;600&family=Alex+Brush&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -39,7 +39,11 @@
                 <a href="index.html"><img src="https://res.cloudinary.com/bqio04wg/image/upload/v1792925301/logo_website_nbg.png" alt="Mental Monster Logo"></a>
             </div>
             <nav class="nav-right">
-                <a href="#" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></a>
+                <!-- Replaced Search with Favourites -->
+                <a href="#" aria-label="Favourites" class="cart-icon-wrapper" id="open-favs">
+                    <i class="fa-regular fa-heart"></i>
+                    <span class="cart-badge fav-badge" id="header-fav-badge">0</span>
+                </a>
                 <a href="#" aria-label="Account"><i class="fa-regular fa-user"></i></a>
                 <a href="#" aria-label="Bag" class="cart-icon-wrapper" id="open-cart">
                     <i class="fa-solid fa-bag-shopping"></i>
@@ -78,11 +82,11 @@
                     </div>
                 </div>
 
-                <!-- Restored Full Background Photo, Removed Overlapping Subtitles -->
                 <a href="product-01.html" class="card velvet-card">
                     <div class="card-content bottom-aligned shadow-text">
-                        <span class="the-prefix">THE</span>
-                        <h2 class="script-font">Velvet Armour</h2>
+                        <span class="the-prefix">VELVET ARMOUR COLLECTION</span>
+                        <h2 class="clean-card-title">Duality</h2>
+                        <span class="card-subtitle">SPORTS BRA</span>
                         <div class="diamond-divider-container small">
                             <div class="line-left"></div>
                             <div class="diamond">♦</div>
@@ -122,6 +126,7 @@
                 </div>
             </div>
         </footer>
+
     </div>
 
     <!-- Cream Cart Drawer -->
@@ -135,15 +140,48 @@
             <p class="empty-cart-msg">Your bag is empty.</p>
         </div>
         <div class="cart-footer">
-            <div class="cart-total-row" style="display:none;" id="cart-total-row">
-                <span>TOTAL</span>
-                <span id="cart-total-price">$0.00 SGD</span>
-            </div>
             <button class="checkout-btn">CHECKOUT</button>
         </div>
     </div>
 
+    <!-- Modals for Legal Text -->
+    <div id="tos-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Terms of Service</h2>
+            <p><strong>Effective Date: October 19, 2026</strong></p>
+            <p>Welcome to mentalmonster. By accessing our website and purchasing our fitness apparel, you agree to comply with and be bound by the following terms...</p>
+        </div>
+    </div>
+    <div id="privacy-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Privacy Policy</h2>
+            <p><strong>Effective Date: October 19, 2026</strong></p>
+            <p>At mentalmonster, we respect your data privacy...</p>
+        </div>
+    </div>
+
     <script>
+        const tosModal = document.getElementById("tos-modal");
+        const privModal = document.getElementById("privacy-modal");
+        const closeBtns = document.querySelectorAll(".close-btn");
+
+        document.getElementById("open-tos").onclick = (e) => { e.preventDefault(); tosModal.style.display = "flex"; }
+        document.getElementById("open-privacy").onclick = (e) => { e.preventDefault(); privModal.style.display = "flex"; }
+        
+        closeBtns.forEach(btn => {
+            btn.onclick = () => {
+                tosModal.style.display = "none";
+                privModal.style.display = "none";
+            }
+        });
+
+        window.onclick = (e) => {
+            if (e.target == tosModal) tosModal.style.display = "none";
+            if (e.target == privModal) privModal.style.display = "none";
+        }
+
         const cartDrawer = document.getElementById('cart-drawer');
         const cartOverlay = document.getElementById('cart-overlay');
         const openCartBtn = document.getElementById('open-cart');
