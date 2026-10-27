@@ -16,12 +16,14 @@
 </head>
 <body>
 
+    <!-- Hidden SVG Filter to sharpen the background texture -->
     <svg width="0" height="0" style="position: absolute; pointer-events: none;">
         <filter id="crisp-lace">
             <feConvolveMatrix order="3" preserveAlpha="true" kernelMatrix="0 -1 0 -1 5 -1 0 -1 0"/>
         </filter>
     </svg>
 
+    <!-- Edge-Anchored Background Panels -->
     <div class="lace-frame" aria-hidden="true">
         <div class="lace-edge lace-left"></div>
         <div class="lace-edge lace-right"></div>
@@ -29,6 +31,7 @@
 
     <div class="page-wrapper">
         
+        <!-- Stable Header with Absolute Centered Logo -->
         <header>
             <nav class="nav-left">
                 <a href="index.html">SHOP</a>
@@ -39,12 +42,13 @@
                 <a href="index.html"><img src="https://res.cloudinary.com/bqio04wg/image/upload/v1792925301/logo_website_nbg.png" alt="Mental Monster Logo"></a>
             </div>
             <nav class="nav-right">
-                <!-- Replaced Search with Favourites -->
+                <!-- Favourites Menu Trigger -->
                 <a href="#" aria-label="Favourites" class="cart-icon-wrapper" id="open-favs">
                     <i class="fa-regular fa-heart"></i>
                     <span class="cart-badge fav-badge" id="header-fav-badge">0</span>
                 </a>
                 <a href="#" aria-label="Account"><i class="fa-regular fa-user"></i></a>
+                <!-- Cart Menu Trigger -->
                 <a href="#" aria-label="Bag" class="cart-icon-wrapper" id="open-cart">
                     <i class="fa-solid fa-bag-shopping"></i>
                     <span class="cart-badge" id="cart-badge">0</span>
@@ -53,6 +57,7 @@
         </header>
 
         <main>
+            <!-- Hero Quote -->
             <section class="hero-quote">
                 <div class="diamond-divider-container">
                     <div class="line-left"></div>
@@ -67,8 +72,10 @@
                 </div>
             </section>
 
+            <!-- Cards Section -->
             <section class="collections-grid">
                 
+                <!-- Left Card -->
                 <div class="card relentless-card">
                     <div class="card-content centered">
                         <span class="the-prefix">THE</span>
@@ -82,6 +89,7 @@
                     </div>
                 </div>
 
+                <!-- Right Card (Restored correct background image via CSS) -->
                 <a href="product-01.html" class="card velvet-card">
                     <div class="card-content bottom-aligned shadow-text">
                         <span class="the-prefix">VELVET ARMOUR COLLECTION</span>
@@ -98,6 +106,7 @@
 
             </section>
 
+            <!-- Bottom Mark -->
             <div class="bottom-mark">
                 <div class="line"></div>
                 <div class="diamond">♦</div>
@@ -107,6 +116,7 @@
             </div>
         </main>
 
+        <!-- Footer -->
         <footer>
             <div class="footer-inner">
                 <div class="footer-left">
@@ -126,7 +136,6 @@
                 </div>
             </div>
         </footer>
-
     </div>
 
     <!-- Cream Cart Drawer -->
@@ -140,11 +149,27 @@
             <p class="empty-cart-msg">Your bag is empty.</p>
         </div>
         <div class="cart-footer">
+            <div class="cart-total-row" id="cart-total-row" style="display:none;">
+                <span>SUBTOTAL:</span>
+                <span id="cart-total-price">$0.00 SGD</span>
+            </div>
             <button class="checkout-btn">CHECKOUT</button>
         </div>
     </div>
 
-    <!-- Modals for Legal Text -->
+    <!-- Cream Favourites Drawer -->
+    <div class="cart-overlay" id="fav-overlay"></div>
+    <div class="cart-drawer" id="fav-drawer">
+        <div class="cart-header">
+            <h2>FAVOURITES</h2>
+            <button id="close-favs">&times;</button>
+        </div>
+        <div id="fav-items-container" class="cart-items">
+            <p class="empty-cart-msg">Your favourites list is empty.</p>
+        </div>
+    </div>
+
+    <!-- Modals -->
     <div id="tos-modal" class="modal">
         <div class="modal-content">
             <span class="close-btn">&times;</span>
@@ -163,6 +188,7 @@
     </div>
 
     <script>
+        // Modal Logic
         const tosModal = document.getElementById("tos-modal");
         const privModal = document.getElementById("privacy-modal");
         const closeBtns = document.querySelectorAll(".close-btn");
@@ -171,10 +197,7 @@
         document.getElementById("open-privacy").onclick = (e) => { e.preventDefault(); privModal.style.display = "flex"; }
         
         closeBtns.forEach(btn => {
-            btn.onclick = () => {
-                tosModal.style.display = "none";
-                privModal.style.display = "none";
-            }
+            btn.onclick = () => { tosModal.style.display = "none"; privModal.style.display = "none"; }
         });
 
         window.onclick = (e) => {
@@ -182,6 +205,7 @@
             if (e.target == privModal) privModal.style.display = "none";
         }
 
+        // Cart Drawer UI
         const cartDrawer = document.getElementById('cart-drawer');
         const cartOverlay = document.getElementById('cart-overlay');
         const openCartBtn = document.getElementById('open-cart');
@@ -191,13 +215,23 @@
             cartDrawer.classList.toggle('open');
             cartOverlay.classList.toggle('show');
         }
-
-        openCartBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            toggleCart();
-        });
+        openCartBtn.addEventListener('click', (e) => { e.preventDefault(); toggleCart(); });
         closeCartBtn.addEventListener('click', toggleCart);
         cartOverlay.addEventListener('click', toggleCart);
+
+        // Fav Drawer UI
+        const favDrawer = document.getElementById('fav-drawer');
+        const favOverlay = document.getElementById('fav-overlay');
+        const openFavBtn = document.getElementById('open-favs');
+        const closeFavBtn = document.getElementById('close-favs');
+
+        function toggleFavs() {
+            favDrawer.classList.toggle('open');
+            favOverlay.classList.toggle('show');
+        }
+        openFavBtn.addEventListener('click', (e) => { e.preventDefault(); toggleFavs(); });
+        closeFavBtn.addEventListener('click', toggleFavs);
+        favOverlay.addEventListener('click', toggleFavs);
     </script>
 </body>
 </html>
