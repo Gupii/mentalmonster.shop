@@ -6,7 +6,6 @@
     <title>Mental Monster | Duality Sports Bra</title>
     <link rel="stylesheet" href="style.css">
     
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -37,7 +36,6 @@
                 <a href="index.html"><img src="https://res.cloudinary.com/bqio04wg/image/upload/v1792925301/logo_website_nbg.png" alt="Mental Monster Logo"></a>
             </div>
             <nav class="nav-right">
-                <!-- Favourites Menu Trigger -->
                 <a href="#" aria-label="Favourites" class="cart-icon-wrapper" id="open-favs">
                     <i class="fa-regular fa-heart"></i>
                     <span class="cart-badge fav-badge" id="header-fav-badge">0</span>
@@ -67,7 +65,7 @@
                 
                 <!-- Product Info -->
                 <div class="product-details">
-                    <div class="breadcrumb"><span>VELVET ARMOUR COLLECTION</span></div>
+                    <div class="breadcrumb">VELVET ARMOUR COLLECTION</div>
                     
                     <h1 class="product-title-clean">Duality</h1>
                     <h2 class="product-subtitle-clean">SPORTS BRA</h2>
@@ -133,11 +131,9 @@
             <h2>YOUR BAG</h2>
             <button id="close-cart">&times;</button>
         </div>
-        <div id="cart-items-container" class="cart-items">
-            <p class="empty-cart-msg">Your bag is empty.</p>
-        </div>
+        <div id="cart-items-container" class="cart-items"></div>
         <div class="cart-footer">
-            <div class="cart-total-row" id="cart-total-row" style="display:none; justify-content: space-between; margin-bottom: 1rem; font-weight: 600; font-size: 1.2rem;">
+            <div class="cart-total-row" id="cart-total-row" style="display:none; display: flex; justify-content: space-between; margin-bottom: 1rem; font-weight: 600; font-size: 1.2rem;">
                 <span>SUBTOTAL:</span>
                 <span id="cart-total-price">$0.00 SGD</span>
             </div>
@@ -152,18 +148,55 @@
             <h2>FAVOURITES</h2>
             <button id="close-favs">&times;</button>
         </div>
-        <div id="fav-items-container" class="cart-items">
-            <p class="empty-cart-msg">Your favourites list is empty.</p>
-        </div>
+        <div id="fav-items-container" class="cart-items"></div>
     </div>
 
     <script>
+        // Shared Memory (LocalStorage)
+        let cart = JSON.parse(localStorage.getItem('mm_cart')) || [];
+        let favs = JSON.parse(localStorage.getItem('mm_favs')) || [];
+        
         let selectedSize = null;
         let selectedColor = 'Cocoa Creme'; 
         let currentQty = 1;
-        let cart = [];
-        let favs = [];
+        let isFavourited = favs.some(f => f.id === 'duality-bra'); // Check on load
 
+        const headerFavBadge = document.getElementById('header-fav-badge');
+        const cartBadge = document.getElementById('cart-badge');
+        const favBtn = document.getElementById('image-fav-btn');
+        const favUnliked = favBtn.querySelector('.fav-icon-unliked');
+        const favLiked = favBtn.querySelector('.fav-icon-liked');
+
+        // Init Data & UI State
+        function saveData() {
+            localStorage.setItem('mm_cart', JSON.stringify(cart));
+            localStorage.setItem('mm_favs', JSON.stringify(favs));
+            updateBadges();
+        }
+
+        function updateBadges() {
+            const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
+            if (totalItems > 0) {
+                cartBadge.textContent = totalItems;
+                cartBadge.classList.add('active');
+            } else {
+                cartBadge.classList.remove('active');
+            }
+
+            if (favs.length > 0) {
+                headerFavBadge.textContent = favs.length;
+                headerFavBadge.classList.add('active');
+            } else {
+                headerFavBadge.classList.remove('active');
+            }
+        }
+
+        if (isFavourited) {
+            favUnliked.style.display = 'none';
+            favLiked.style.display = 'block';
+        }
+
+        // UI Selectors
         const sizeBtns = document.querySelectorAll('.size-btn');
         const colorSwatches = document.querySelectorAll('.color-swatch');
         const mainImage = document.getElementById('main-product-image');
@@ -172,7 +205,6 @@
         const qtyPlus = document.getElementById('qty-plus');
         const qtyVal = document.getElementById('qty-val');
         
-        // Select Size
         sizeBtns.forEach(btn => {
             btn.addEventListener('click', () => {
                 sizeBtns.forEach(b => b.classList.remove('selected'));
@@ -181,13 +213,11 @@
             });
         });
 
-        // Select Color and Swap Image
         colorSwatches.forEach(swatch => {
             swatch.addEventListener('click', () => {
                 colorSwatches.forEach(s => s.classList.remove('active'));
                 swatch.classList.add('active');
                 selectedColor = swatch.getAttribute('data-name');
-                
                 colorLabelDisplay.textContent = selectedColor.toUpperCase();
                 const newImgSrc = swatch.getAttribute('data-image');
                 
@@ -199,30 +229,14 @@
             });
         });
 
-        // Quantity Logic
-        qtyMinus.addEventListener('click', () => {
-            if (currentQty > 1) {
-                currentQty--;
-                qtyVal.textContent = currentQty;
-            }
-        });
-        qtyPlus.addEventListener('click', () => {
-            currentQty++;
-            qtyVal.textContent = currentQty;
-        });
+        qtyMinus.addEventListener('click', () => { if (currentQty > 1) { currentQty--; qtyVal.textContent = currentQty; }});
+        qtyPlus.addEventListener('click', () => { currentQty++; qtyVal.textContent = currentQty; });
 
-        // Favourites Logic
-        const favBtn = document.getElementById('image-fav-btn');
-        const favUnliked = favBtn.querySelector('.fav-icon-unliked');
-        const favLiked = favBtn.querySelector('.fav-icon-liked');
-        const headerFavBadge = document.getElementById('header-fav-badge');
-        let isFavourited = false;
-
+        // Favourites Image Button Logic
         favBtn.addEventListener('click', (e) => {
             e.preventDefault();
             isFavourited = !isFavourited;
             
-            // Pop animation
             favBtn.classList.remove('animating');
             void favBtn.offsetWidth; 
             favBtn.classList.add('animating');
@@ -230,12 +244,11 @@
             if (isFavourited) {
                 favUnliked.style.display = 'none';
                 favLiked.style.display = 'block';
-                
                 favs.push({
                     id: 'duality-bra',
                     name: 'Duality Sports Bra',
                     price: '$40.00 SGD',
-                    img: 'https://res.cloudinary.com/bqio04wg/image/upload/v1792998861/photo_2026-10-26_15-13-56.jpg' // Default editorial image for fav list
+                    img: 'https://res.cloudinary.com/bqio04wg/image/upload/v1793001294/photo_2026-10-26_15-52-31-removebg-preview.png' 
                 });
             } else {
                 favUnliked.style.display = 'block';
@@ -243,77 +256,36 @@
                 favs = favs.filter(item => item.id !== 'duality-bra');
             }
             
-            if (favs.length > 0) {
-                headerFavBadge.textContent = favs.length;
-                headerFavBadge.classList.add('active');
-            } else {
-                headerFavBadge.classList.remove('active');
-            }
-            
+            saveData();
             renderFavs();
         });
-
-        function renderFavs() {
-            const container = document.getElementById('fav-items-container');
-            if (favs.length === 0) {
-                container.innerHTML = '<p class="empty-cart-msg">Your favourites list is empty.</p>';
-                return;
-            }
-            container.innerHTML = favs.map(item => `
-                <div class="cart-item">
-                    <div class="cart-item-img">
-                        <img src="${item.img}" alt="${item.name}">
-                    </div>
-                    <div class="cart-item-info">
-                        <h4>${item.name}</h4>
-                        <p class="cart-price">${item.price}</p>
-                    </div>
-                </div>
-            `).join('');
-        }
 
         // Add to Bag Logic
         const addToBagBtn = document.getElementById('add-to-bag-btn');
         const errorMsg = document.getElementById('selection-error');
-        const cartBadge = document.getElementById('cart-badge');
         let errorTimeout;
 
         addToBagBtn.addEventListener('click', () => {
             if (!selectedSize || !selectedColor) {
-                let msg = 'Please select a size and colour.';
-                if (!selectedSize && selectedColor) msg = 'Please select a size.';
-                if (selectedSize && !selectedColor) msg = 'Please select a colour.';
-
-                errorMsg.textContent = msg;
+                errorMsg.textContent = (!selectedSize && selectedColor) ? 'Please select a size.' : 
+                                       (selectedSize && !selectedColor) ? 'Please select a colour.' : 'Please select a size and colour.';
                 errorMsg.classList.add('show');
-                
                 clearTimeout(errorTimeout);
-                errorTimeout = setTimeout(() => {
-                    errorMsg.classList.remove('show');
-                }, 4000);
+                errorTimeout = setTimeout(() => errorMsg.classList.remove('show'), 4000);
                 return;
             }
-
             errorMsg.classList.remove('show');
+
             const activeSwatchSrc = document.querySelector('.color-swatch.active').getAttribute('data-image');
-            const existingItemIndex = cart.findIndex(item => item.name === 'Duality Sports Bra' && item.size === selectedSize && item.color === selectedColor);
+            const existingIndex = cart.findIndex(i => i.name === 'Duality Sports Bra' && i.size === selectedSize && i.color === selectedColor);
             
-            if (existingItemIndex > -1) {
-                cart[existingItemIndex].qty += currentQty;
+            if (existingIndex > -1) {
+                cart[existingIndex].qty += currentQty;
             } else {
-                cart.push({
-                    name: 'Duality Sports Bra',
-                    price: 40.00,
-                    size: selectedSize,
-                    color: selectedColor,
-                    qty: currentQty,
-                    img: activeSwatchSrc
-                });
+                cart.push({ name: 'Duality Sports Bra', price: 40.00, size: selectedSize, color: selectedColor, qty: currentQty, img: activeSwatchSrc });
             }
 
-            const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
-            cartBadge.textContent = '+' + totalItems;
-            cartBadge.classList.add('active');
+            saveData();
 
             const originalContent = addToBagBtn.innerHTML;
             addToBagBtn.innerHTML = '<span>ADDED!</span><i class="fa-solid fa-check"></i>';
@@ -329,23 +301,50 @@
             renderCart();
         });
 
-        // Cart Drawer Control
+        // Drawer Controls
         const cartDrawer = document.getElementById('cart-drawer');
         const cartOverlay = document.getElementById('cart-overlay');
         const openCartBtn = document.getElementById('open-cart');
         const closeCartBtn = document.getElementById('close-cart');
-        const cartItemsContainer = document.getElementById('cart-items-container');
-        const cartTotalRow = document.getElementById('cart-total-row');
-        const cartTotalPrice = document.getElementById('cart-total-price');
+        
+        const favDrawer = document.getElementById('fav-drawer');
+        const favOverlay = document.getElementById('fav-overlay');
+        const openFavBtn = document.getElementById('open-favs');
+        const closeFavBtn = document.getElementById('close-favs');
 
-        function toggleCart() {
-            cartDrawer.classList.toggle('open');
-            cartOverlay.classList.toggle('show');
-        }
+        function toggleCart() { cartDrawer.classList.toggle('open'); cartOverlay.classList.toggle('show'); renderCart(); }
+        function toggleFavs() { favDrawer.classList.toggle('open'); favOverlay.classList.toggle('show'); renderFavs(); }
 
         openCartBtn.addEventListener('click', (e) => { e.preventDefault(); toggleCart(); });
         closeCartBtn.addEventListener('click', toggleCart);
         cartOverlay.addEventListener('click', toggleCart);
+
+        openFavBtn.addEventListener('click', (e) => { e.preventDefault(); toggleFavs(); });
+        closeFavBtn.addEventListener('click', toggleFavs);
+        favOverlay.addEventListener('click', toggleFavs);
+
+        // Rendering & Swipe Logic
+        const cartItemsContainer = document.getElementById('cart-items-container');
+        const cartTotalRow = document.getElementById('cart-total-row');
+        const cartTotalPrice = document.getElementById('cart-total-price');
+        const favItemsContainer = document.getElementById('fav-items-container');
+
+        function removeCartItem(index) {
+            cart.splice(index, 1);
+            saveData();
+            renderCart();
+        }
+
+        function removeFavItem(id) {
+            favs = favs.filter(item => item.id !== id);
+            if (id === 'duality-bra') {
+                isFavourited = false;
+                favUnliked.style.display = 'block';
+                favLiked.style.display = 'none';
+            }
+            saveData();
+            renderFavs();
+        }
 
         function renderCart() {
             if (cart.length === 0) {
@@ -353,43 +352,74 @@
                 cartTotalRow.style.display = 'none';
                 return;
             }
-            
             let totalSum = 0;
-            cartItemsContainer.innerHTML = cart.map(item => {
+            cartItemsContainer.innerHTML = cart.map((item, index) => {
                 totalSum += (item.price * item.qty);
                 return `
-                <div class="cart-item">
-                    <div class="cart-item-img">
-                        <img src="${item.img}" alt="${item.name}">
+                <div class="cart-item-wrapper">
+                    <div class="cart-item-action">
+                        <button class="remove-btn" onclick="removeCartItem(${index})"><i class="fa-solid fa-trash"></i></button>
                     </div>
-                    <div class="cart-item-info">
-                        <h4>${item.name}</h4>
-                        <p class="cart-variant">Size: <strong>${item.size}</strong> | Qty: <strong>${item.qty}</strong></p>
-                        <p class="cart-variant">Colour: <strong>${item.color}</strong></p>
-                        <p class="cart-price">$${(item.price * item.qty).toFixed(2)} SGD</p>
+                    <div class="cart-item swipeable">
+                        <div class="cart-item-img"><img src="${item.img}" alt="${item.name}"></div>
+                        <div class="cart-item-info">
+                            <h4>${item.name}</h4>
+                            <p class="cart-variant">Size: <strong>${item.size}</strong> | Qty: <strong>${item.qty}</strong></p>
+                            <p class="cart-variant">Colour: <strong>${item.color}</strong></p>
+                            <p class="cart-price">$${(item.price * item.qty).toFixed(2)} SGD</p>
+                        </div>
                     </div>
                 </div>
             `}).join('');
-
             cartTotalRow.style.display = 'flex';
             cartTotalPrice.textContent = '$' + totalSum.toFixed(2) + ' SGD';
+            initSwipeables();
         }
 
-        // Fav Drawer Control
-        const favDrawer = document.getElementById('fav-drawer');
-        const favOverlay = document.getElementById('fav-overlay');
-        const openFavBtn = document.getElementById('open-favs');
-        const closeFavBtn = document.getElementById('close-favs');
-
-        function toggleFavs() {
-            favDrawer.classList.toggle('open');
-            favOverlay.classList.toggle('show');
+        function renderFavs() {
+            if (favs.length === 0) {
+                favItemsContainer.innerHTML = '<p class="empty-cart-msg">Your favourites list is empty.</p>';
+                return;
+            }
+            favItemsContainer.innerHTML = favs.map(item => `
+                <div class="cart-item-wrapper">
+                    <div class="cart-item-action">
+                        <button class="remove-btn" onclick="removeFavItem('${item.id}')"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                    <a href="product-01.html" class="cart-item swipeable fav-link">
+                        <div class="cart-item-img"><img src="${item.img}" alt="${item.name}"></div>
+                        <div class="cart-item-info">
+                            <h4>${item.name}</h4>
+                            <p class="cart-price">${item.price}</p>
+                            <p class="click-to-view">Click to view listing &rarr;</p>
+                        </div>
+                    </a>
+                </div>
+            `).join('');
+            initSwipeables();
         }
 
-        openFavBtn.addEventListener('click', (e) => { e.preventDefault(); toggleFavs(); });
-        closeFavBtn.addEventListener('click', toggleFavs);
-        favOverlay.addEventListener('click', toggleFavs);
+        function initSwipeables() {
+            const swipeables = document.querySelectorAll('.swipeable');
+            swipeables.forEach(el => {
+                let startX = 0;
+                let currentX = 0;
+                el.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, {passive: true});
+                el.addEventListener('touchmove', e => {
+                    currentX = e.touches[0].clientX;
+                    let diff = startX - currentX;
+                    if (diff > 0 && diff < 80) { el.style.transform = `translateX(-${diff}px)`; }
+                }, {passive: true});
+                el.addEventListener('touchend', e => {
+                    let diff = startX - currentX;
+                    if (diff > 40) el.style.transform = `translateX(-80px)`;
+                    else el.style.transform = `translateX(0)`;
+                });
+            });
+        }
 
+        // Init on load
+        updateBadges();
     </script>
 </body>
 </html>
