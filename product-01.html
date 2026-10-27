@@ -36,7 +36,11 @@
                 <a href="index.html"><img src="https://res.cloudinary.com/bqio04wg/image/upload/v1792925301/logo_website_nbg.png" alt="Mental Monster Logo"></a>
             </div>
             <nav class="nav-right">
-                <a href="#" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></a>
+                <!-- Replaced Search with Favourites -->
+                <a href="#" aria-label="Favourites" class="cart-icon-wrapper" id="open-favs">
+                    <i class="fa-regular fa-heart"></i>
+                    <span class="cart-badge fav-badge" id="header-fav-badge">0</span>
+                </a>
                 <a href="#" aria-label="Account"><i class="fa-regular fa-user"></i></a>
                 <a href="#" aria-label="Bag" class="cart-icon-wrapper" id="open-cart">
                     <i class="fa-solid fa-bag-shopping"></i>
@@ -47,11 +51,16 @@
 
         <main>
             <section class="product-section">
-                <!-- Product Gallery (Added WIP Overlay) -->
+                <!-- Product Gallery -->
                 <div class="product-gallery">
                     <div class="listing-image-container">
+                        <!-- Custom Favourites Button -->
+                        <button class="image-fav-btn" id="image-fav-btn" aria-label="Add to favourites">
+                            <img src="https://res.cloudinary.com/bqio04wg/image/upload/v1792933527/image-removebg-preview3.png" alt="Unliked" class="fav-icon-unliked">
+                            <img src="https://res.cloudinary.com/bqio04wg/image/upload/v1792933528/image-removebg-preview.png" alt="Liked" class="fav-icon-liked" style="display: none;">
+                        </button>
+                        
                         <img src="https://res.cloudinary.com/bqio04wg/image/upload/v1793001294/photo_2026-10-26_15-52-31-removebg-preview.png" alt="Duality Sports Bra" class="transparent-product-img" id="main-product-image">
-                        <div id="wip-overlay" class="wip-overlay">WIP</div>
                     </div>
                 </div>
                 
@@ -64,7 +73,6 @@
                     
                     <p class="price-clean">$40.00 SGD</p>
                     
-                    <!-- Size Selector -->
                     <div class="variant-selector">
                         <p class="variant-label">SIZE</p>
                         <div class="sizes" id="size-options">
@@ -75,26 +83,24 @@
                         </div>
                     </div>
 
-                    <!-- Dynamic Color Selector (No overlapping text) -->
                     <div class="variant-selector">
                         <p class="variant-label">COLOUR: <span id="color-label-display" style="color: var(--text-light); font-weight: 500;">COCOA CREME</span></p>
                         <div class="colors-container" id="color-options">
                             <div class="color-swatch round" style="background-color: #872B2D;" data-name="Dark Cherry" data-image="https://res.cloudinary.com/bqio04wg/image/upload/v1793040257/photo_2026-10-27_02-42-42-removebg-preview.png"></div>
-                            <div class="color-swatch round" style="background-color: #5A5444;" data-name="Olive Veil" data-image="WIP"></div>
+                            <!-- Updated Olive Veil Data Image URL -->
+                            <div class="color-swatch round" style="background-color: #5A5444;" data-name="Olive Veil" data-image="https://res.cloudinary.com/bqio04wg/image/upload/v1793081803/30b4ddd1-cedc-4910-bc84-a195e6891bca-removebg-preview.png"></div>
                             <div class="color-swatch round" style="background-color: #C88E88;" data-name="Rosewood" data-image="https://res.cloudinary.com/bqio04wg/image/upload/v1793040256/photo_2026-10-27_02-42-37-removebg-preview.png"></div>
                             <div class="color-swatch round" style="background-color: #A9C4D7;" data-name="Midnight Mist" data-image="https://res.cloudinary.com/bqio04wg/image/upload/v1793040257/photo_2026-10-27_02-42-44-removebg-preview.png"></div>
                             <div class="color-swatch round active" style="background-color: #FEECC5;" data-name="Cocoa Creme" data-image="https://res.cloudinary.com/bqio04wg/image/upload/v1793001294/photo_2026-10-26_15-52-31-removebg-preview.png"></div>
                         </div>
                     </div>
 
-                    <!-- Quantity Selector -->
                     <div class="qty-selector">
                         <button id="qty-minus"><i class="fa-solid fa-minus"></i></button>
                         <span id="qty-val">1</span>
                         <button id="qty-plus"><i class="fa-solid fa-plus"></i></button>
                     </div>
                     
-                    <!-- Error Message -->
                     <div id="selection-error" class="error-msg"></div>
                     
                     <button class="btn-add-bag" id="add-to-bag-btn">
@@ -148,7 +154,6 @@
         const sizeBtns = document.querySelectorAll('.size-btn');
         const colorSwatches = document.querySelectorAll('.color-swatch');
         const mainImage = document.getElementById('main-product-image');
-        const wipOverlay = document.getElementById('wip-overlay');
         const colorLabelDisplay = document.getElementById('color-label-display');
         const qtyMinus = document.getElementById('qty-minus');
         const qtyPlus = document.getElementById('qty-plus');
@@ -163,27 +168,19 @@
             });
         });
 
-        // Select Color, Update Dynamic Text, Swap Image & Handle WIP
+        // Select Color, Update Dynamic Text, Swap Image
         colorSwatches.forEach(swatch => {
             swatch.addEventListener('click', () => {
                 colorSwatches.forEach(s => s.classList.remove('active'));
                 swatch.classList.add('active');
                 selectedColor = swatch.getAttribute('data-name');
-                
-                // Update text label dynamically so it doesn't overlap
                 colorLabelDisplay.textContent = selectedColor.toUpperCase();
                 
                 const newImgSrc = swatch.getAttribute('data-image');
                 
                 mainImage.style.opacity = 0; 
                 setTimeout(() => {
-                    if (newImgSrc === 'WIP') {
-                        mainImage.src = '';
-                        wipOverlay.style.display = 'flex';
-                    } else {
-                        mainImage.src = newImgSrc;
-                        wipOverlay.style.display = 'none';
-                    }
+                    mainImage.src = newImgSrc;
                     mainImage.style.opacity = 1;
                 }, 200);
             });
@@ -200,6 +197,44 @@
             currentQty++;
             qtyVal.textContent = currentQty;
         });
+
+        // Interactive Favourites Button Logic
+        const favBtn = document.getElementById('image-fav-btn');
+        const favUnliked = favBtn.querySelector('.fav-icon-unliked');
+        const favLiked = favBtn.querySelector('.fav-icon-liked');
+        const headerFavBadge = document.getElementById('header-fav-badge');
+        let isFavourited = false;
+        let favCount = 0;
+
+        if (favBtn) {
+            favBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                isFavourited = !isFavourited;
+                
+                // Trigger animation
+                favBtn.classList.remove('animating');
+                void favBtn.offsetWidth; 
+                favBtn.classList.add('animating');
+                
+                if (isFavourited) {
+                    favUnliked.style.display = 'none';
+                    favLiked.style.display = 'block';
+                    favCount++;
+                } else {
+                    favUnliked.style.display = 'block';
+                    favLiked.style.display = 'none';
+                    favCount--;
+                }
+                
+                // Update badge in header
+                if (favCount > 0) {
+                    headerFavBadge.textContent = favCount;
+                    headerFavBadge.classList.add('active');
+                } else {
+                    headerFavBadge.classList.remove('active');
+                }
+            });
+        }
 
         // Add to Bag Logic
         const addToBagBtn = document.getElementById('add-to-bag-btn');
@@ -226,9 +261,7 @@
             errorMsg.classList.remove('show');
 
             const activeSwatchSrc = document.querySelector('.color-swatch.active').getAttribute('data-image');
-            const cartImgSrc = activeSwatchSrc === 'WIP' ? 'https://res.cloudinary.com/bqio04wg/image/upload/v1792925301/logo_website_nbg.png' : activeSwatchSrc;
 
-            // Combine identical items if they share Name, Size, and Color
             const existingItemIndex = cart.findIndex(item => item.name === 'Duality Sports Bra' && item.size === selectedSize && item.color === selectedColor);
             
             if (existingItemIndex > -1) {
@@ -240,16 +273,14 @@
                     size: selectedSize,
                     color: selectedColor,
                     qty: currentQty,
-                    img: cartImgSrc
+                    img: activeSwatchSrc
                 });
             }
 
-            // Sum all quantities
             const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
-            cartBadge.textContent = '+' + totalItems;
+            cartBadge.textContent = totalItems;
             cartBadge.classList.add('active');
 
-            // Button Feedback
             const originalContent = addToBagBtn.innerHTML;
             addToBagBtn.innerHTML = '<span>ADDED!</span><i class="fa-solid fa-check"></i>';
             addToBagBtn.style.backgroundColor = 'var(--gold-accent)';
